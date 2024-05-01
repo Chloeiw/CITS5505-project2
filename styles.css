@@ -1,69 +1,225 @@
-.container-fluid{
-    width: 50%;
-    margin: auto;
+
+.title{
+    color: #AE2717;
+    position: absolute;
+    width: 164px;
+    height: 38px;
+    top: 31px;
+    left: 874px;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 32px;
+}
+
+/* homebar */
+.menubar{
+position: absolute;
+   width: 280px;
+  /*height: 146px; */
+  top: 99px;
+  left: 340px;
+  border-radius: 6px;
+  background-color: #FFFFFF; /* Example background color */
+  padding: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 
 }
-.center {
-    display: flex;
-    justify-content: center;
-    height: auto; 
-    flex-direction: column;
+
+.element a {
+    color: #8F8D90;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+    padding-left: 10px;
+}
+
+.element img{
+    width: 20px;
+}
+
+/* searchbar */
+.searchbar{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Roboto;
+    position: absolute;
+    width: 280px;
+    height: 39px;
+    top: 220px;
+    left: 340px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    padding: 10px;
+}
+
+.searchbar a{
+    color: black;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+    padding-left: 10px;
+}
+.search img{
+    width: 20px;
+    height: 20px;
+    top: 127px;
+    left: 380px;
+}
+
+/* addQuestion form */
+.asterisk{
+    color: #AE2717;
 }
 
 #add-question {
-    width: 50%;
-    margin: auto;
-    background-color: #ffffff; /* Set background color for the form */
-    padding: 20px; /* Add some padding for better appearance */
-    border-radius: 5px; /* Add rounded corners to the form */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    position: absolute;
+    width: 640px; 
+    height: 720px;
+    top: 99px;
+    left: 640px;
+    border-radius: 6px;
+    background-color: #ffffff; 
+    padding: 20px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 .form-group {
     margin-bottom: 20px; /* Add some space between each form group */
 }
 
-.form-group label {
-    display: inline-block;
-    width: 100px; 
-    margin: 0 auto;
-
+.form-group label{
+    color: #8F8D90;
+    width: 37px;
+    height: 16px;
+    top: 140px;
+    left: 660px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .form-group input[type="text"] {
-    background-color: rgb(218, 218, 218); /* Set background color for text inputs */
-    padding: 8px; /* Add padding to text inputs */
-    border: none; /* Remove default border */
+    background-color: #FFFFFF;
+    border: solid 1px #000000;
+    border-radius: 6px;
+    width: 600px;
+    height: 35px;
 }
 
-#title, #subtitle {
-    width: 80%; 
+.form-group #question{
+    background-color: #FFFFFF;
+    border: solid 1px #000000;
+    border-radius: 6px;
+    width: 600px;
+    height: 164px;
 }
 
-#cover {
-    width: 100px; 
-    height: 100px; 
+/* button */
+.button-group .button-upload{
+    position: absolute;
+    top: 510px;
+    left: 660px;
+    border-radius: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
 }
 
-#content {
-    height: 200px; 
-    width: 80%;
+.button-group .button-submit{
+    border-radius: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    position: absolute;
+    top: 775px;
+    left: 799px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
 }
 
-.button-group {
+.button-group .button-cancel{
+        border-radius: 100px;
+        background-color: #FFFFFF;
+        border: 1px solid #000000;
+        position: absolute;
+        top: 775px;
+        left: 980px;
+        width: 100px;
+        height: 30px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 400;
+        font-family: Roboto;
+}
+
+/* profile */
+.profilemenu .button-profile{
+    border-radius: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    position: absolute;
+    top: 150px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
+}
+
+.profilemenu .button-addQuestion{
+    border-radius: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    position: absolute;
+    top: 200px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
+}
+
+
+.profilemenu{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 280px;
+    height: 248px;
+    top: 99px;
+    left: 1300px; 
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+
+}
+
+.profilemenu img{
+    width: 93px;
+    height: 96px;
+}
+
+.profilemenu .username {
     
     display: flex;
     justify-content: center;
-    margin-right: 10px;
-}
-
-.button-submit {
-    border-radius: 10px;
-    margin-right: 300px; 
-}
-
-.button-cancel {
-    border-radius: 10px;
-}
-
-
+    position: absolute;
+    width: 200px;
+    height: 14px;
+    top: 115px;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
+  }
