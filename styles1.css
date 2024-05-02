@@ -116,7 +116,6 @@ position: absolute;
 
 /* profiles */
 .profilemenu .username {
-    
     display: flex;
     justify-content: center;
     position: absolute;
@@ -257,3 +256,192 @@ position: absolute;
     color: #FFFFFF;
     border: none
 }
+
+/* post2 */
+.post2 img{
+    width: 48px;
+    height: 47.08px;
+    position: absolute;
+    top: 1043px;
+    left: 660px;
+}
+
+.usernameAnswer{
+    position: absolute;
+    top: 1048px;
+    left: 728px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
+}
+.lastAnswer{
+    position: absolute;
+    top: 1068px;
+    left: 728px;
+    width: 237px;
+    height: 14px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 12px; 
+}
+.post2 .button-following{
+    border-radius: 100px;
+    background-color: #8F8D90;
+    border: none;
+    position: absolute;
+    top: 1051px;
+    left: 1183px;
+    width: 77px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
+    color: #FFFFFF;
+}
+
+.post2 p{
+    position: absolute;
+    width: 599px;
+    height: 240px;
+    top: 1115px;
+    left: 661px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+}
+
+#like img{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 1251px;
+    left: 661px;
+}
+#dislike img{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 1251px;
+    left: 750px;
+}
+#view img{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 1251px;
+    left: 854px;
+}
+.icontitle1{
+    position: absolute;
+    width: 49px;
+    height: 14px;
+    top: 1252px;
+    left: 687px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 12px;
+    color: #8F8D90;
+}
+.icontitle2{
+    position: absolute;
+    width: 49px;
+    height: 14px;
+    top: 1252px;
+    left: 777px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 12px;
+    color: #8F8D90;
+}
+.icontitle3{
+    position: absolute;
+    width: 49px;
+    height: 14px;
+    top: 1252px;
+    left: 880px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 12px;
+    color: #8F8D90;
+}
+.relatedContainer{
+    background: #EBEBEB;
+    position: absolute;
+    width: 640px;
+    height: 344px;
+    top: 1489px;
+    left: 640px;
+}
+.titleRelated{
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    color: #8F8D90;
+    position: absolute;
+    width: 258px;
+    height: 19px;
+    top: 20px;
+    left: 20px;
+}
+
+#related1 img{
+    position: absolute;
+    width: 280px;
+    height: 190px;
+    top: 55px;
+    left: 28px;
+    border-radius: 6px;
+}
+#related2 img{
+    position: absolute;
+    width: 280px;
+    height: 190px;
+    top: 55px;
+    left: 338px;
+    border-radius: 6px;
+}
+#related1Title{
+    position: absolute;
+    width: 151px;
+    height: 19px;
+    top: 250px;
+    left: 29px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #8F8D90;
+}
+#related2Title{
+    position: absolute;
+    width: 151px;
+    height: 19px;
+    top: 250px;
+    left: 340px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    color: #8F8D90;
+}
+#related1Heading{
+    position: absolute;
+    width: 151px;
+    height: 19px;
+    top: 280px;
+    left: 29px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+}
+#related2Heading{
+    position: absolute;
+    width: 151px;
+    height: 19px;
+    top: 280px;
+    left: 340px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+}
+
