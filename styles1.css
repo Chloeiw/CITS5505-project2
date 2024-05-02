@@ -1,0 +1,259 @@
+.title{
+    color: #AE2717;
+    position: absolute;
+    width: 164px;
+    height: 38px;
+    top: 31px;
+    left: 874px;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 32px;
+}
+
+/* homebar */
+.menubar{
+position: absolute;
+  width: 280px;
+  top: 99px;
+  left: 340px;
+  border-radius: 6px;
+  background-color: #FFFFFF; /* Example background color */
+  padding: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.element a {
+    color: #8F8D90;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+    padding-left: 10px;
+}
+
+.element img{
+    width: 20px;
+}
+
+/* searchbar */
+.searchbar{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Roboto;
+    position: absolute;
+    width: 280px;
+    height: 39px;
+    top: 220px;
+    left: 340px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    padding: 10px;
+}
+
+.searchbar a{
+    color: black;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+    padding-left: 10px;
+}
+.search img{
+    width: 20px;
+    height: 20px;
+    top: 127px;
+    left: 380px;
+}
+
+/* profile */
+.profilemenu .button-profile{
+    border-radius: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    position: absolute;
+    top: 150px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
+}
+
+.profilemenu .button-addQuestion{
+    border-radius: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    position: absolute;
+    top: 200px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
+}
+
+
+.profilemenu{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 280px;
+    height: 248px;
+    top: 99px;
+    left: 1300px; 
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+
+}
+
+.profilemenu img{
+    width: 93px;
+    height: 96px;
+}
+
+/* profiles */
+.profilemenu .username {
+    
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 200px;
+    height: 14px;
+    top: 115px;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
+  }
+
+ /*content */
+.contentpic img{
+    position: absolute;
+    width: 620px;
+    height: 358px;
+    top: 101px;
+    left: 640px;
+    border-radius: 6px;
+}
+
+#group{
+    position: absolute;
+    width: 151px;
+    height: 19px;  
+    top: 470px;
+    left: 660px;
+    font-size: 400;
+    font-family: Roboto;
+    font-size: 16px;
+    color: #8F8D90;
+}
+
+#title{
+    position: absolute;
+    width: 600px;
+    height: 200px;
+    top: 500px;
+    left: 660px;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: Roboto;
+    color: #000000;
+}
+
+#summary{
+    position: absolute;
+    width: 599px;
+    height: 40px;
+    top: 533px;
+    left: 661px;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Roboto;
+    color: #8F8D90;
+}
+
+/* user */
+.usericon img{
+    width: 48px;
+    height: 47.08px;
+    position: absolute;
+    top: 593px;
+    left: 660px;
+}
+.usernameComment{
+    position: absolute;
+    top: 600px;
+    left: 728px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
+}
+.lastreply{
+    position: absolute;
+    top: 620px;
+    left: 728px;
+    width: 237px;
+    height: 14px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 12px; 
+}
+
+.comment1 button{
+    position: absolute;
+    top: 603px;
+    left: 1183px;
+    border-radius: 100px;
+    border: 1px solid black;
+    background-color: #FFFFFF;
+    padding: 10px 24px 10px 24px;
+    gap: 8px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
+}
+.comment1 p{
+    position: absolute;
+    width: 599px;
+    height: 240px;
+    top: 661px;
+    left: 661px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+}
+.answer1 #write{
+    position: absolute;
+    width: 502px;
+    height: 39px;
+    top: 941px;
+    left: 661px;
+    border-radius: 30px;
+    border: 1px solid black;
+}
+.answer1 ::placeholder{
+    font-size: 12px;
+    font-weight: 400;
+    color: #8F8D90;
+    position: absolute;
+    width: 185px;
+    height: 14px;
+    left: 15px;
+    font-family: Roboto;
+}
+.answer1 #button-send{
+    position: absolute;
+    top: 940px;
+    left: 1183px;
+    border-radius: 100px;
+    gap: 8px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 12px;
+    background-color: #AE2717;
+    color: #FFFFFF;
+    border: none
+}

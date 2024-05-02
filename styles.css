@@ -14,8 +14,7 @@
 /* homebar */
 .menubar{
 position: absolute;
-   width: 280px;
-  /*height: 146px; */
+  width: 280px;
   top: 99px;
   left: 340px;
   border-radius: 6px;
