@@ -39,7 +39,7 @@
 /* homebar */
 .menubar{
     position: absolute;
-      width: 280px;
+      width: 260px;
       top: 102px;
       left: 340px;
       border-radius: 6px;
@@ -221,6 +221,11 @@
     font-weight: 400;
     font-size: 14px;
     color: #000000;
+}
+
+.answer1{
+    background-color: #FFFFFF;
+    border: 1px soild black;
 }
 .answer1 #write{
     position: absolute;  

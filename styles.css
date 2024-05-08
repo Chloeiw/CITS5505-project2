@@ -33,58 +33,27 @@
 /* homebar */
 .menubar{
     position: absolute;
-      width: 280px;
-      top: 99px;
-      left: 340px;
+      width: 260px;
+      top: 102px;
+      left: 360px;
       border-radius: 6px;
       background-color: #FFFFFF; 
       padding: 10px; 
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     }
     
-    
-    .element a {
+.element a {
         color: #8F8D90;
         font-family: Roboto;
         font-weight: 400;
         font-size: 16px;
         text-decoration: none;
         padding-left: 10px;
-    }
+        align-self: flex-end;
+}
     
-    
-    .element img{
+.element img{
         width: 20px;
-    }
-
-/* searchbar */
-.searchbar{
-    font-size: 16px;
-    font-weight: 400;
-    font-family: Roboto;
-    position: absolute;
-    width: 280px;
-    height: 39px;
-    top: 220px;
-    left: 340px;
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    padding: 10px;
-}
-
-.searchbar a{
-    color: black;
-    font-family: Roboto;
-    font-weight: 400;
-    font-size: 16px;
-    text-decoration: none;
-    padding-left: 10px;
-}
-.search img{
-    width: 20px;
-    height: 20px;
-    top: 127px;
-    left: 380px;
 }
 
 /* addQuestion form */
@@ -125,6 +94,7 @@
     border-radius: 6px;
     width: 600px;
     height: 35px;
+    padding-left: 10px;
 }
 
 .form-group #question{
@@ -133,12 +103,14 @@
     border-radius: 6px;
     width: 600px;
     height: 164px;
+    
+    
 }
 
 /* button */
 .button-group .button-upload{
     position: absolute;
-    top: 510px;
+    top: 520px;
     left: 660px;
     border-radius: 100px;
     background-color: #FFFFFF;
@@ -148,7 +120,11 @@
     text-align: center;
     font-size: 12px;
     font-weight: 400;
-    font-family: Roboto;
+    font-family: Roboto;   
+}
+.button-group .button-upload:hover{
+    background-color: #AE2717;
+    color: #FFFFFF;
 }
 
 .button-group .button-submit{
@@ -165,6 +141,10 @@
     font-weight: 400;
     font-family: Roboto;
 }
+.button-group .button-submit:hover{
+background-color: #AE2717;
+color: #FFFFFF
+}
 
 .button-group .button-cancel{
         border-radius: 100px;
@@ -180,6 +160,10 @@
         font-weight: 400;
         font-family: Roboto;
 }
+.button-group .button-cancel:hover{
+    background-color: #AE2717;
+    color: #FFFFFF
+    }
 
 /* profile */
 .profilemenu .button-profile{
@@ -195,6 +179,10 @@
     font-weight: 400;
     font-family: Roboto;
 }
+.profilemenu .button-profile:hover{
+    background-color: #AE2717;
+    color: #FFFFFF
+}
 
 .profilemenu .button-addQuestion{
     border-radius: 100px;
@@ -209,7 +197,10 @@
     font-weight: 400;
     font-family: Roboto;
 }
-
+.profilemenu .button-addQuestion:hover{
+    background-color: #AE2717;
+    color: #FFFFFF
+}
 
 .profilemenu{
     padding: 10px;
