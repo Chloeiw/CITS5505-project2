@@ -29,18 +29,24 @@
     font-weight: 600;
     font-size: 32px;
 }
+#home a{
+    color: #AE2717;
+}
+#home{
+    background-color:rgb(236, 236, 236)
+}
 
 /* homebar */
 .menubar{
-position: absolute;
-  width: 280px;
-  top: 99px;
-  left: 340px;
-  border-radius: 6px;
-  background-color: #FFFFFF; 
-  padding: 10px; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-}
+    position: absolute;
+      width: 280px;
+      top: 102px;
+      left: 340px;
+      border-radius: 6px;
+      background-color: #FFFFFF; 
+      padding: 10px; 
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    }
 
 
 .element a {
@@ -50,8 +56,8 @@ position: absolute;
     font-size: 16px;
     text-decoration: none;
     padding-left: 10px;
+    align-self: flex-end;
 }
-
 
 .element img{
     width: 20px;
