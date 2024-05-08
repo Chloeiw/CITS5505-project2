@@ -1,10 +1,30 @@
-.title{
+.question-detail_v1 {
+    width: 1920px;
+    height: 1965px;
+    flex-grow: 0;
+    padding: 31px 340px 100px;
+    background-color: #f8f8f8;
+}
+
+#container {
+    width: 100%;
+    height: 45px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background-color: #f8f8f8;
+}
+
+.title {
     color: #AE2717;
     position: absolute;
     width: 164px;
     height: 38px;
-    top: 31px;
-    left: 874px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-family: Roboto;
     font-weight: 600;
     font-size: 32px;
@@ -31,6 +51,7 @@ position: absolute;
     text-decoration: none;
     padding-left: 10px;
 }
+
 
 .element img{
     width: 20px;
@@ -196,7 +217,8 @@ position: absolute;
     color: #000000;
 }
 .answer1 #write{
-    position: absolute;
+    position: absolute;  
+    padding-left: 15px;
     width: 502px;
     height: 39px;
     top: 941px;
@@ -204,14 +226,10 @@ position: absolute;
     border-radius: 30px;
     border: 1px solid black;
 }
-.answer1 ::placeholder{
+.answer1 ::placeholder{  
     font-size: 12px;
     font-weight: 400;
     color: #8F8D90;
-    position: absolute;
-    width: 185px;
-    height: 14px;
-    left: 15px;
     font-family: Roboto;
 }
 .answer1 #button-send{
@@ -227,6 +245,8 @@ position: absolute;
     color: #FFFFFF;
     border: none
 }
+
+
 
 /* post2 */
 .post2 img{
