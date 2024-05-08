@@ -17,10 +17,11 @@ position: absolute;
   top: 99px;
   left: 340px;
   border-radius: 6px;
-  background-color: #FFFFFF; /* Example background color */
+  background-color: #FFFFFF; 
   padding: 10px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
+
 
 .element a {
     color: #8F8D90;
@@ -33,36 +34,6 @@ position: absolute;
 
 .element img{
     width: 20px;
-}
-
-/* searchbar */
-.searchbar{
-    font-size: 16px;
-    font-weight: 400;
-    font-family: Roboto;
-    position: absolute;
-    width: 280px;
-    height: 39px;
-    top: 220px;
-    left: 340px;
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-    padding: 10px;
-}
-
-.searchbar a{
-    color: black;
-    font-family: Roboto;
-    font-weight: 400;
-    font-size: 16px;
-    text-decoration: none;
-    padding-left: 10px;
-}
-.search img{
-    width: 20px;
-    height: 20px;
-    top: 127px;
-    left: 380px;
 }
 
 /* profile */
