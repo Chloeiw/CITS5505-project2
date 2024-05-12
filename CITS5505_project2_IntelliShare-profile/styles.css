@@ -111,11 +111,19 @@ position: absolute;
     font-size: 14px;
 }
 
-.profile-container input[type="text"] {
+.profile-container input[type="text"], input[type="password"]{
     background-color: #f8f8f8;
     border-radius: 6px;
     width: 600px;
     height: 35px;
+}
+
+.profile-container textarea {
+    background-color: #f8f8f8;
+    border-radius: 6px;
+    width: 600px;
+    height: 100px;
+    resize: none;
 }
 
 .userpic-container img{

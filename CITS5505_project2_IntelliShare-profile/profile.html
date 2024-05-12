@@ -35,7 +35,7 @@
     <div class="form-content">
         <div class="profile-container">
             <label for="username">User Name</label>
-            <input type="text" id="username" name="username" placeholder="momo">
+            <input type="text" id="username" name="username" placeholder="momo" maxlength="50">
         </div>
         <div class="profile-container">
             <label for="gender">Gender</label>
@@ -67,11 +67,11 @@
         </div>
         <div class="profile-container">
             <label for="selfIntro">Self Introduction</label>
-            <input type="text" id="selfIntro" name="selfIntro" placeholder="Just a curious explorer of the vast and exciting world!😊">
+            <textarea id="selfIntro" name="selfIntro" placeholder="Just a curious explorer of the vast and exciting world!😊" maxlength="256" rows="3"></textarea>
         </div>
         <div class="profile-container">
             <label for="password">Password</label>
-            <input type="text" id="password" name="password" required>
+            <input type="password" id="password" name="password" required maxlength="20">
         </div>
         <div class="profile-container">
             <label for="securityQuestion">Security Question</label>
@@ -88,7 +88,7 @@
         </div>
         <div class="profile-container">
             <label for="securityAnswer">Security Answer</label>
-            <input type="text" id="securityAnswer" name="securityAnswer" required>
+            <input type="text" id="securityAnswer" name="securityAnswer" required maxlength="256">
         </div>
     </div>
 </form>
@@ -100,12 +100,10 @@
 
 </body>
 
-
 <!-- footer -->
 <footer class="fixed-bottom bg-dark text-white text-center">
     &copy; The copyright of the reproduced content belongs to the author and the source website. Please indicate the source of the original content reproduced on this site.
 </footer>
-  
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
