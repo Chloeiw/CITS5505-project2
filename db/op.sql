@@ -1,9 +1,10 @@
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username CHAR(50) NOT NULL,
-    interest INT NOT NULL,
     password CHAR(20) NOT NULL,
-    image VARCHAR NOT NULL
+    image VARCHAR NOT NULL,
+    session CHAR(64),
+    session_expr TIMESTAMP
 );
 
 CREATE TABLE question (
@@ -30,12 +31,8 @@ CREATE TABLE category (
     name VARCHAR NOT NULL
 );
 
-CREATE TABLE image (
+CREATE TABLE userInterest(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    address VARCHAR NOT NULL
-);
-
-
-ALTER TABLE question(
-    ADD post_time CURRENT_TIMESTAMP NOT NULL
+    user_id INT NOT NULL,
+    category_id INT NOT NULL
 );
