@@ -11,14 +11,20 @@
 ## Application Introduction
 ### Purpose of Design
 IntelliShare is an app for willing learners. It allows you  to post your questions about all fields when you encounter any questions or have any ideas in life or study, and get answers of expertise spanning every conceivable topic from netizens all over the world. Also, if you are an expert in one area, you can also answer questions for others, engaging with a vibrant community of experts, enthusiasts, and learners alike.
-In a universe brimming with questions, curiosities, and insights, IntelliShare can satisfy your desire to knowledge.  It is a bustling digital marketplace of ideas where minds converge to learn, share, and grow together, connecting seekers and sharers of knowledge from all over the world.
+In a universe brimming with questions, curiosities, and insights, IntelliShare can satisfy your knowledge desire.  It is a bustling digital marketplace of ideas where minds converge to learn, share, and grow together, connecting seekers and sharers of knowledge.
 
 ### Summary of Architecture
-The first version of the App has five feature modules, which are the account module, the post-question module, the answer module, the searching, and the information feed. 
-The account module allows users to create new accounts, log in with accounts, and modify account information (avatar, user name, etc.). The Publish Issues module allows users to publish issues. By adding titles, content, and even cover art, the description of the problem is more complete. The Reply to questions module allows users to write a text comment on a question. The search function allows users to enter the keyword of the title to search for the corresponding question and reply. The feed feature allows users to browse recommended content. Recommended content is presented according to a simple ranking algorithm.
-The recommended algorithm rules for information flow are as follows:
-1. Prioritize user interest and problem classification
-2, then recommend according to the latest addition time in the database
+The first version of the App has five feature modules, which are as follows:
+1. **The account module**
+In this module, users can create new accounts, log in, and modify account information, such as avatar, and user name. 
+2. **The post-question module**
+In this module, users can publish their issues and questions in many fields by editing their titles, content, and even cover images.
+3. **The answer module**
+In this module, users can write only text comments on a question. 
+4. **The searching module**
+In this module, users can search for the question and reply by inputting keywords of the title. 
+5. **The information feed**
+The feed feature allows users to browse recommended questions and their answers. The Recommended contents are presented based on a simple ranking algorithm: prioritize matching user interest with problem classification, then recommend according to the latest time in the database.
 
 
 ## Instruction for Launching  
