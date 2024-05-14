@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliShare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- menu bar -->
+  <div class="title">
+      IntelliShare
+  </div>
+  
+  <div class="menubar">
+    <div class="element" id="home"><img src="home.png" alt="home"><a href="">Home</a></div>
+    <div class="element" id="business"><img src="business.png" alt="business"><a href="">Business</a></div>
+    <div class="element" id="sports"><img src="sports.png" alt="sports"><a href="">Sports</a></div>
+  </div>
+
+<!-- search bar -->
+  <div class="searchbar">
+    <div class="search"><img src="search.png" alt=""><a href="">Search</a></div>
+  </div>
+
+<!-- Content -->
+<form id="profile">
+    <div class="userpic-container">
+        <button type="change" class="button-change" onclick="">Change</button>
+        <span class="userpic"><img src="userpic.png" alt="userpic"></span>
+    </div>
+
+    <div class="form-content">
+        <div class="profile-container">
+            <label for="username">User Name</label>
+            <input type="text" id="username" name="username" placeholder="momo" maxlength="50">
+        </div>
+        <div class="profile-container">
+            <label for="gender">Gender</label>
+            <select class="form-select" id="gender">
+                <option selected>Choose...</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="secret">Keep as A Secret</option>
+            </select>
+        </div>
+        <div class="profile-container">
+            <label for="occupation">Occupation</label>
+            <select class="form-select" id="occupation" name="occupation">
+                <option selected>Choose...</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="engineer">Engineer</option>
+                <option value="doctor">Doctor</option>
+                <option value="software_developer">Software Developer</option>
+                <option value="nurse">Nurse</option>
+                <option value="artist">Artist</option>
+                <option value="sales_professional">Sales Professional</option>
+                <option value="manager">Manager</option>
+                <option value="consultant">Consultant</option>
+                <option value="freelancer">Freelancer</option>
+                <option value="entrepreneur">Entrepreneur</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="profile-container">
+            <label for="selfIntro">Self Introduction</label>
+            <textarea id="selfIntro" name="selfIntro" placeholder="Just a curious explorer of the vast and exciting world!😊" maxlength="256" rows="3"></textarea>
+        </div>
+        <div class="profile-container">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required maxlength="20">
+        </div>
+        <div class="profile-container">
+            <label for="securityQuestion">Security Question</label>
+            <select class="form-select" id="securityQuestion" name="securityQuestion" required>
+                <option selected>Choose...</option>
+                <option value="maiden-name">Mother's Maiden Name</option>
+                <option value="pet-name">Pet's Name</option>
+                <option value="fav-place">Favourite Place</option>
+                <option value="pob">Place of Birth</option>
+                <option value="dob">Date of Birth</option>
+                <option value="tob">Town of Birth</option>
+                <option value="fav-color">Favourite Color</option>
+            </select>
+        </div>
+        <div class="profile-container">
+            <label for="securityAnswer">Security Answer</label>
+            <input type="text" id="securityAnswer" name="securityAnswer" required maxlength="256">
+        </div>
+    </div>
+</form>
+
+    <div class="button-group">
+        <button type="submit" id="submitBtn" class="button-submit">Submit</button>
+        <button type="cancel" class="button-cancel" onclick="">Cancel</button>
+    </div>
+
+</body>
+
+<!-- footer -->
+<footer class="fixed-bottom bg-dark text-white text-center">
+    &copy; The copyright of the reproduced content belongs to the author and the source website. Please indicate the source of the original content reproduced on this site.
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="styles.js"></script>
