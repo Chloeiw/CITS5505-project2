@@ -41,8 +41,7 @@ The first version of the App has five feature modules, which are as follows:
 | username     | CHAR(50)  | NOT NULL                    |
 | password     | CHAR(20)  | NOT NULL                    |
 | image        | VARCHAR   | NOT NULL                    |
-| session      | CHAR(64)  |                             |
-| session_expr | TIMESTAMP |                             |
+
 
 **Table: question**
 
@@ -82,7 +81,7 @@ The first version of the App has five feature modules, which are as follows:
 | user_id     | INT       | NOT NULL                    |
 | category_id | INT       | NOT NULL                    |
 
-I hope this format helps you with your documentation!
+
 
 ### **Routes**
 
