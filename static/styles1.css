@@ -163,7 +163,7 @@
     position: absolute;
     width: 599px;
     height: 40px;
-    top: 533px;
+    top: 670px;
     left: 661px;
     font-size: 16px;
     font-weight: 400;
@@ -266,6 +266,9 @@
     position: absolute;
     top: 1043px;
     left: 660px;
+    display: block;
+    margin-bottom: 20px; /* Adjust the margin as needed */
+    clear: both;
 }
 
 .usernameAnswer{
@@ -285,21 +288,6 @@
     font-family: Roboto;
     font-weight: 400;
     font-size: 12px; 
-}
-.post2 .button-following{
-    border-radius: 100px;
-    background-color: #8F8D90;
-    border: none;
-    position: absolute;
-    top: 1051px;
-    left: 1183px;
-    width: 77px;
-    height: 30px;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 400;
-    font-family: Roboto;
-    color: #FFFFFF;
 }
 
 .post2 p{
@@ -445,4 +433,22 @@
     font-family: Roboto;
     font-weight: 400;
     font-size: 16px;
+}
+
+.answer-block p {
+    /* Answer text styles */
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+}
+
+.answer-block img {
+    /* Answer image styles */
+    width: 48px;
+    height: 47.08px;
+}
+
+.answer-block + .answer-block {
+    margin-top: 20px; /* Add spacing between each answer block */
 }

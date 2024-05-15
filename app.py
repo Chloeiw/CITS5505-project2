@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from datetime import datetime
 import os
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -36,6 +37,7 @@ def submit():
         question = request.form['question']
         username = "Andrianto Hadi"  # This should be dynamically set based on the current user in a real app
         submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
+ 
         
         question_id = len(questions) + 1
         questions.append({

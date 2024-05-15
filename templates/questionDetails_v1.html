@@ -25,7 +25,7 @@
         <span class="usericon"><img src="{{ url_for('static', filename='usericon.png') }}" alt=""></span>
         <span class="usernameComment">{{ question.username }}</span>
         <span class="lastreply">Posted at {{ question.submission_time }}</span>
-        <button type="follow" class="button-follow" onclick="">Follow</button>
+
         <span id="group">{{ question.title }}</span>
         <span id="title">{{ question.subtitle }}</span> 
         <span id="summary">{{ question.question }}</span>
@@ -43,7 +43,7 @@
     {% for answer in answers %}
     <div class="answer-block">
         <span class="usernameAnswer">{{ answer.username }}</span>
-        <span class="lastAnswer">Posted at {{ answer.answer_time }}</span>
+        <span class="lastAnswer">Answered at {{ answer.answer_time }}</span>
         {% if answer.image %}
         <img src="{{ url_for('uploaded_file', filename=answer.image) }}" alt="Answer Image">
         {% endif %}
