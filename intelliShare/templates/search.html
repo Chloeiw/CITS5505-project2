@@ -15,13 +15,13 @@
   </div>
   
   <div class="menubar">
-    <div class="element" id="home"><img src="../static/home.png" alt="home"><a href="index.html">Home</a></div>
-    <div class="element" id="business"><img src="../static/business.png" alt="business"><a href="">Business</a></div>
-    <div class="element" id="sports"><img src="../static/sports.png" alt="sports"><a href="">Sports</a></div>
+    <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('index') }}">Home</a></div>
+    <div class="element" id="business"><img src="{{ url_for('static', filename='business.png') }}" alt="business"><a href="">Business</a></div>
+    <div class="element" id="sports"><img src="{{ url_for('static', filename='sports.png') }}" alt="sports"><a href="">Sports</a></div>
   </div>
 
   <div class="searchbar">
-    <div class="search"><img src="../static/search.png" alt=""><a href="search.html">Search</a></div>
+    <div class="search"><img src="{{ url_for('static', filename='search.png') }}" alt=""><a href="{{ url_for('search') }}">Search</a></div>
   </div>
 
 <!-- Content -->
@@ -41,7 +41,7 @@
 <div class="profilemenu">
     <button type="profile" class="button-profile" onclick="">Profile</button>
     <button type="addQuestion" class="button-addQuestion" onclick="">Add Question</button>
-    <span class="userpic"><img src="../static/userpic.png" alt="userpic"></span>
+    <span class="userpic"><img src="{{ url_for('static', filename='userpic.png') }}" alt="userpic"></span>
     <span class="username">Andrianto Hadi</span>
     
 </div>
