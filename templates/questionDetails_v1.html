@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
+</head>
+<body>
+    <div id="container">
+        <span class="title">IntelliShare</span>
+    </div>
+    <div class="menubar">
+        <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="">Home</a></div>
+        <div class="element" id="business"><img src="{{ url_for('static', filename='business.png') }}" alt="business"><a href="">Business</a></div>
+        <div class="element" id="sports"><img src="{{ url_for('static', filename='sports.png') }}" alt="sports"><a href="">Sports</a></div>
+        <div class="element" id="search"><img src="{{ url_for('static', filename='search.png') }}" alt="search"><a href="">Search</a></div>
+    </div>
+
+    <!-- Content -->
+    <div class="comment1">
+        <div class="contentpic">
+            <img src="{{ url_for('uploaded_file', filename=question.image) }}" alt="Content Picture">
+        </div>
+        <span class="usericon"><img src="{{ url_for('static', filename='usericon.png') }}" alt=""></span>
+        <span class="usernameComment">{{ question.username }}</span>
+        <span class="lastreply">Posted at {{ question.submission_time }}</span>
+        <button type="follow" class="button-follow" onclick="">Follow</button>
+        <span id="group">{{ question.title }}</span>
+        <span id="title">{{ question.subtitle }}</span> 
+        <span id="summary">{{ question.question }}</span>
+        <div class="answer1">
+            <form action="/questionDetails_v1" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="question_id" value="{{ question.id }}">
+                <input type="text" id="write" name="answer" placeholder="Write my answer">
+                <input type="file" name="file" accept="image/*">
+                <button type="submit" id="button-send">Send</button>
+            </form>
+        </div>
+    </div>
+<!-- Display answers -->
+<div class="post2">
+    {% for answer in answers %}
+    <div class="answer-block">
+        <span class="usernameAnswer">{{ answer.username }}</span>
+        <span class="lastAnswer">Posted at {{ answer.answer_time }}</span>
+        {% if answer.image %}
+        <img src="{{ url_for('uploaded_file', filename=answer.image) }}" alt="Answer Image">
+        {% endif %}
+        <p>{{ answer.text }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+    <div class="relatedContainer">
+        <span class="titleRelated">Related</span>
+        <span id="related1"><a href=""><img src="{{ url_for('static', filename='related1.png') }}" alt="related1"></a></span>
+        <span id="related2"><a href=""><img src="{{ url_for('static', filename='related2.png') }}" alt="related2"></a></span>
+        <span id="related1Title"><a href="" style="text-decoration: none; color: #8F8D90;">Question . Travel</a></span>
+        <span id="related2Title"><a href="" style="text-decoration: none; color: #8F8D90;">Question . Business</a></span>
+        <span id="related1Heading">111</span>
+        <span id="related2Heading">222</span>
+    </div>
+
+    <div class="profilemenu">
+        <button type="profile" class="button-profile" onclick="">Profile</button>
+        <button type="addQuestion" class="button-addQuestion" onclick="">Add Question</button>
+        <span class="userpic"><img src="{{ url_for('static', filename='userpic.png') }}" alt="userpic"></span>
+        <span class="username">Andrianto Hadi</span>
+    </div>
+</body>
+</html>

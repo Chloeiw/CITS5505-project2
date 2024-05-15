@@ -230,7 +230,7 @@
 .answer1 #write{
     position: absolute;  
     padding-left: 15px;
-    width: 502px;
+    width: 475px;
     height: 39px;
     top: 941px;
     left: 661px;
@@ -245,8 +245,8 @@
 }
 .answer1 #button-send{
     position: absolute;
-    top: 940px;
-    left: 1183px;
+    top: 945px;
+    left: 1195px;
     border-radius: 100px;
     gap: 8px;
     font-family: Roboto;
@@ -446,4 +446,3 @@
     font-weight: 400;
     font-size: 16px;
 }
-
