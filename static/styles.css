@@ -145,8 +145,8 @@ input[type="text"], select.form-select {
     background-color: #FFFFFF;
     border: 1px solid #000000;
     position: absolute;
-    top: 900px;
-    left: 799px;
+    top: 800px;
+    left: 160px;
     width: 100px;
     height: 30px;
     text-align: center;
@@ -160,8 +160,8 @@ input[type="text"], select.form-select {
         background-color: #FFFFFF;
         border: 1px solid #000000;
         position: absolute;
-        top: 900px;
-        left: 980px;
+        top: 800px;
+        left: 380px;
         width: 100px;
         height: 30px;
         text-align: center;
