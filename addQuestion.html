@@ -10,19 +10,30 @@
 <body>
     <div class="question-detail_v1">
    <!--  menu bar -->
-   <div id="container">
-    <span class="title">
-        IntelliShare
-    </span>
-  </div>
-  
-  
-  <div class="menubar">
-    <div class="element" id="home"><img src="home.png" alt="home"><a href="">Home</a></div>
-    <div class="element" id="business"><img src="business.png" alt="business"><a href="">Business</a></div>
-    <div class="element" id="sports"><img src="sports.png" alt="sports"><a href="">Sports</a></div>
-    <div class="element" id = "search"><img src="search.png" alt="search"><a href="">Search</a></div>
-  </div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">IntelliShare</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><strong>Add question</strong></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
 
 <!-- Content -->
 
@@ -50,22 +61,12 @@
         <button type="cancel" class="button-cancel" onclick="">Cancel</button>
 
     </div>
-
-<!--  profile -->
-<div class="profilemenu">
-    <button type="profile" class="button-profile" onclick="">Profile</button>
-    <button type="addQuestion" class="button-addQuestion" onclick="">Add Question</button>
-    <span class="userpic"><img src="userpic.png" alt="userpic"></span>
-    <span class="username">Andrianto Hadi</span>
-    
-</div>
-</body>
-</div>
+ </form>
 
 <!-- footer -->
-<footer class="fixed-bottom bg-dark text-white text-center">
+<!-- <footer class="fixed-bottom bg-dark text-white text-center">
     &copy; The copyright of the reproduced content belongs to the author and the source website. Please indicate the source of the original content reproduced on this site
-</footer>
+</footer> -->
   
 
 
