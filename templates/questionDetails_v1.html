@@ -42,8 +42,8 @@
 <div class="post2">
     {% for answer in answers %}
     <div class="answer-block">
-        <span class="usernameAnswer">{{ answer.username }}</span>
-        <span class="lastAnswer">Answered at {{ answer.answer_time }}</span>
+        <span class="usernameAnswer2">{{ answer.username }}</span>
+        <br><span class="lastAnswer2">Answered at {{ answer.answer_time }}</span>
         {% if answer.image %}
         <img src="{{ url_for('uploaded_file', filename=answer.image) }}" alt="Answer Image">
         {% endif %}

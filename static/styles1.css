@@ -257,21 +257,18 @@
     border: none
 }
 
-
-
 /* post2 */
-.post2 img{
+/* .post2 img{
     width: 48px;
     height: 47.08px;
     position: absolute;
     top: 1043px;
     left: 660px;
     display: block;
-    margin-bottom: 20px; /* Adjust the margin as needed */
+    margin-bottom: 20px;
     clear: both;
 }
-
-.usernameAnswer{
+.usernameAnswer2{
     position: absolute;
     top: 1048px;
     left: 728px;
@@ -279,7 +276,7 @@
     font-weight: 400;
     font-size: 14px;
 }
-.lastAnswer{
+.lastAnswer2{
     position: absolute;
     top: 1068px;
     left: 728px;
@@ -289,7 +286,6 @@
     font-weight: 400;
     font-size: 12px; 
 }
-
 .post2 p{
     position: absolute;
     width: 599px;
@@ -300,6 +296,16 @@
     font-weight: 400;
     font-size: 14px;
     color: #000000;
+} */
+.post2{
+    position: absolute;
+    top: 1068px;
+    left: 728px;
+    width: 237px;
+    height: 14px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 12px; 
 }
 
 #like img{
