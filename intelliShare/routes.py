@@ -14,7 +14,7 @@ def configure_routes(app):
 
     # Route for the main page where questions can be added
     @app.route('/add')
-    def index():
+    def addQuestion():
         return render_template('addQuestion_v1.html')
 
     # Route to handle question submissions
@@ -116,5 +116,3 @@ def configure_routes(app):
     @app.route('/search')
     def search():
         return render_template('search.html')
-
-
