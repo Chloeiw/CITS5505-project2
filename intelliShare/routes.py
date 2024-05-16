@@ -13,7 +13,7 @@ def allowed_file(filename):
 def configure_routes(app):
 
     # Route for the main page where questions can be added
-    @app.route('/')
+    @app.route('/add')
     def index():
         return render_template('addQuestion_v1.html')
 
@@ -99,3 +99,22 @@ def configure_routes(app):
         print(f'Security Answer: {security_answer}')
         
         return 'Profile submitted successfully!'
+    
+    @app.route('/')
+    def home():
+        posts = [
+            {
+                'question': 'What is the smartest animal?',
+                'username': 'John',
+                'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+                'content': 'Pantabangan town was submerged in the 1970s to build a reservoir...'
+            },
+
+        ]
+        return render_template('index.html', posts=posts)
+    
+    @app.route('/search')
+    def search():
+        return render_template('search.html')
+
+
