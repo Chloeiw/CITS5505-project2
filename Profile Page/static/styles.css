@@ -1,0 +1,187 @@
+.title{
+    color: #AE2717;
+    position: absolute;
+    width: 164px;
+    height: 38px;
+    top: 31px;
+    left: 874px;
+    font-family: Roboto;
+    font-weight: 600;
+    font-size: 32px;
+}
+
+/* homebar */
+.menubar{
+position: absolute;
+   width: 280px;
+  top: 99px;
+  left: 340px;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+  padding: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+
+}
+
+.element a {
+    color: #8F8D90;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+    padding-left: 10px;
+}
+
+.element img{
+    width: 20px;
+}
+
+/* searchbar */
+.searchbar{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Roboto;
+    position: absolute;
+    width: 280px;
+    height: 39px;
+    top: 220px;
+    left: 340px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    padding: 10px;
+}
+
+.searchbar a{
+    color: black;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+    padding-left: 10px;
+}
+.search img{
+    width: 20px;
+    height: 20px;
+    top: 127px;
+    left: 380px;
+}
+
+/* profile form */
+
+#profile {
+    position: absolute;
+    width: 640px; 
+    height: 880px;
+    top: 99px;
+    left: 640px;
+    border-radius: 6px;
+    background-color: #ffffff; 
+    padding: 20px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.userpic-container {
+    text-align: center;
+}
+
+.form-content {
+    margin-top: 50px;
+}
+
+.form-content #selfIntro{
+    border-radius: 6px;
+    width: 600px;
+    height: 70px;
+    background-color: #f8f8f8;
+}
+
+.profile-container {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.profile-container label{
+    color: #8F8D90;
+    width: auto;
+    height: 16px;
+    top: 140px;
+    left: 660px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.profile-container input[type="text"], input[type="password"]{
+    background-color: #f8f8f8;
+    border-radius: 6px;
+    width: 600px;
+    height: 35px;
+}
+
+.profile-container textarea {
+    background-color: #f8f8f8;
+    border-radius: 6px;
+    width: 600px;
+    height: 100px;
+    resize: none;
+}
+
+.userpic-container img{
+    width: 93px;
+    height: 96px;
+    display: block;
+    margin: 0 auto;
+}
+
+input[type="text"], select.form-select {
+    border: none; 
+    background-color: #f8f8f8; 
+}
+
+
+/* button */
+.button-group .button-submit{
+    border-radius: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    position: absolute;
+    top: 800px;
+    left: 160px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
+}
+
+.button-group .button-cancel{
+        border-radius: 100px;
+        background-color: #FFFFFF;
+        border: 1px solid #000000;
+        position: absolute;
+        top: 800px;
+        left: 380px;
+        width: 100px;
+        height: 30px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 400;
+        font-family: Roboto;
+}
+
+.button-change{
+    border-radius: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    position: absolute;
+    top: 130px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
+    left: 50%;
+    transform: translateX(-50%);
+}

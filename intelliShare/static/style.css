@@ -187,17 +187,17 @@ position: absolute;
 /* user */
 .question-container {
     position: absolute;
+    
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* This makes the container take up the full height of the viewport */
+    height: auto; /* 100vh take up the full height of the viewport */
     width: 640px;
     height: 319px;
     top: 540px;
     left: 610px;
-  
-    
 }
+
 .question .usericon img{
     width: 48px;
     height: 47.08px;

@@ -1,10 +1,21 @@
 from flask import render_template, redirect, url_for, session
 from app import app
+from datetime import datetime
 
 @app.route('/')
 def home():
     #[TODO]
-    return render_template('index.html', title="IntelliShare")
+    posts = [
+        {
+            'question': 'What is the smartest animal?',
+            'username': 'John',
+            'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+            'content': 'Pantabangan town was submerged in the 1970s to build a reservoir...'
+        },
+
+    ]
+    return render_template('index.html', posts=posts)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -38,6 +49,6 @@ def answer():
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     #[TODO]
-    return "<h2>search</h2>"
-
+    # Your code here
+    return render_template('search.html')
 

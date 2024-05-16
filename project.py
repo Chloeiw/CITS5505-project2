@@ -1,0 +1,1 @@
+from intelliShare import flaskApp
