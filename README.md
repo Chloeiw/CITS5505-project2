@@ -215,4 +215,13 @@ Description: The search page allows users to search for specific content within 
 
 ## Instruction for Launching
 
+> start app using `flask` cmd
+
+in repo foler run cmd below
+
+```
+flask --app intelliShare run --debug
+```
+
+
 ## Instruction for Testing

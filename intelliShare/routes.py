@@ -38,7 +38,7 @@ def register():
 @login_required
 def logout():
     session.pop('username', None)
-    return redirect(url_for(home))
+    return redirect(url_for("main.home"))
 
 
 # create new question
@@ -61,3 +61,10 @@ def search():
     #[TODO]
     # Your code here
     return render_template('search.html')
+
+
+@main.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    #[TODO]
+    return "<h2>profile</h2>"

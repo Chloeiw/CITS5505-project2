@@ -14,7 +14,7 @@ login_manager = LoginManager()
 def create_app(database_uri="sqlite:///IntelliShare.db"):
     app = Flask(__name__, static_url_path='/static')
     app.config["SQLALCHEMY_DATABASE_URI"] = database_uri
-    app.config["SECRET_KEY"] = "FesC9cBSuxakv9yN0vBY"
+    app.config["SECRET_KEY"] = "TOBESETSECRET"
 
 
     UPLOAD_FOLDER = 'uploads'
@@ -24,7 +24,7 @@ def create_app(database_uri="sqlite:///IntelliShare.db"):
         os.makedirs(UPLOAD_FOLDER)
 
     db.init_app(app)
-    
+
     login_manager.init_app(app)
 
     @login_manager.user_loader

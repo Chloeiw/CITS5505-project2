@@ -15,13 +15,13 @@
   </div>
   
   <div class="menubar">
-    <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('home') }}">Home</a></div>
+    <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('main.home') }}">Home</a></div>
     <div class="element" id="business"><img src="{{ url_for('static', filename='business.png') }}" alt="business"><a href="">Business</a></div>
     <div class="element" id="sports"><img src="{{ url_for('static', filename='sports.png') }}" alt="sports"><a href="">Sports</a></div>
   </div>
 
   <div class="searchbar">
-    <div class="search"><img src="{{ url_for('static', filename='search.png') }}" alt=""><a href="{{ url_for('search') }}">Search</a></div>
+    <div class="search"><img src="{{ url_for('static', filename='search.png') }}" alt=""><a href="{{ url_for('main.search') }}">Search</a></div>
   </div>
 
 <!-- Content -->
@@ -56,10 +56,10 @@
 
 <!--  profile -->
 <div class="profilemenu">
-    <form action="{{ url_for('profile') }}">
+    <form action="{{ url_for('main.profile') }}">
         <button type="profile" class="button-profile">Profile</button>
     </form>
-    <form action="{{ url_for('addQuestion') }}">
+    <form action="{{ url_for('main.question') }}">
         <button type="addQuestion" class="button-addQuestion">Add Question</button>
     </form>
     <span class="userpic"><img src="../static/userpic.png" alt="userpic"></span>
