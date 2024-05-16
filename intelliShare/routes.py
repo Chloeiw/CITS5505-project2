@@ -1,4 +1,3 @@
-import requests
 from datetime import datetime
 from flask import request, render_template, redirect, session, url_for, Blueprint
 from flask_login import login_user, login_required, logout_user
