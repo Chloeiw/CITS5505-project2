@@ -1,17 +1,20 @@
 from flask import Flask
-from db import db
-from models import User
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///IntelliShare.db"
-db.init_app(app)
+from routes import configure_routes
 
-with app.app_context():
-    db.create_all()
+app = Flask(__name__, static_url_path='/static')
 
+# Configure upload folder and allowed extensions
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+# Ensure the upload directory exists
+import os
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
-from routes import *
-
+# Call the function to configure routes
+configure_routes(app)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=3000)
+    app.run(debug=True)
