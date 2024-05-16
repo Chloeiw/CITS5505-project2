@@ -1,10 +1,10 @@
+from flask import render_template, redirect, url_for, session
+from app import app
 from datetime import datetime
-from flask import flash, redirect, render_template, request, url_for
-from intelliShare import flaskApp
 
-@flaskApp.route("/")
-@flaskApp.route("/index")
-def index():
+@app.route('/')
+def home():
+    #[TODO]
     posts = [
         {
             'question': 'What is the smartest animal?',
@@ -16,10 +16,39 @@ def index():
     ]
     return render_template('index.html', posts=posts)
 
-@flaskApp.route("/search")
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    #[TODO]
+    return "<h2>login</h2>"
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    #[TODO]
+    return "<h2>Register</h2>"
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for(home))
+
+
+# create new question
+@app.route('/question', methods=['GET', 'POST'])
+def question():
+    #[TODO]
+    return "<h2>Question</h2>"
+
+
+@app.route('/answer', methods=['GET', 'POST'])
+def answer():
+    #[TODO]
+    return "<h2>Question</h2>"
+
+
+@app.route('/search', methods=['GET', 'POST'])
 def search():
+    #[TODO]
     # Your code here
     return render_template('search.html')
 
-if __name__ == "__main__":
-    flaskApp.run(debug=True)
