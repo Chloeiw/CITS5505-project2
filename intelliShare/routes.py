@@ -14,6 +14,7 @@ def home():
     #[TODO]
     posts = [
         {
+            'question_id': 1,
             'question': 'What is the smartest animal?',
             'username': 'John',
             'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
@@ -78,4 +79,12 @@ def search():
 def profile():
     #[TODO]
     return "<h2>profile</h2>"
-    
+
+    # Route to display question details and answers
+@main.route('/questionDetails_v1/<int:question_id>')
+def question_details(question_id):
+    question = next((q for q in questions if q['id'] == question_id), None)
+    if not question:
+        return "Question not found", 404
+    question_answers = [a for a in answers if a['question_id'] == question_id]
+    return render_template('questionDetails_v1.html', question=question, answers=question_answers)

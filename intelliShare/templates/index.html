@@ -36,7 +36,7 @@
 <div class="question-container">
     <div class="question">
     {% for post in posts %}
-        <h2>{{ post.question }}</h2>
+    <h2><a href="{{ url_for('main.question_details', question_id=post.question_id) }}">{{ post.question }}</a></h2>
         <hr>
         <span class="usericon"><img src="../static/usericon.png" alt=""></span>
         <span class="usernameComment">{{ post.username }}</span>
