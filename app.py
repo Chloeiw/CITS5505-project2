@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from datetime import datetime
 import os
-from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -25,7 +25,7 @@ def allowed_file(filename):
 
 # Route for the main page where questions can be added
 @app.route('/')
-def index():
+def question():
     return render_template('addQuestion_v1.html')
 
 # Route to handle question submissions
@@ -35,9 +35,8 @@ def submit():
         title = request.form['title']
         subtitle = request.form['subtitle']
         question = request.form['question']
-        username = "Andrianto Hadi"  # This should be dynamically set based on the current user in a real app
+        username = "Andrianto Hadi"  
         submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
- 
         
         question_id = len(questions) + 1
         questions.append({
@@ -69,7 +68,7 @@ def answer():
     answer = {
         'question_id': question_id,
         'text': answer_text,
-        'username': "User",  # This should be dynamically set based on the current user in a real app
+        'username': "Jason", 
         'answer_time': answer_time
     }
 
@@ -77,10 +76,11 @@ def answer():
     if 'file' in request.files:
         file = request.files['file']
         if file and allowed_file(file.filename):
-            filename = file.filename
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            filename = secure_filename(file.filename)
+            unique_filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}_{filename}"
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
             file.save(filepath)
-            answer['image'] = filename
+            answer['image'] = unique_filename
 
     answers.append(answer)
     return redirect(url_for('question_details', question_id=question_id))

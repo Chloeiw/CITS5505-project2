@@ -58,7 +58,7 @@
         <span id="related2"><a href=""><img src="{{ url_for('static', filename='related2.png') }}" alt="related2"></a></span>
         <span id="related1Title"><a href="" style="text-decoration: none; color: #8F8D90;">Question . Travel</a></span>
         <span id="related2Title"><a href="" style="text-decoration: none; color: #8F8D90;">Question . Business</a></span>
-        <span id="related1Heading">111</span>
+        <span id="related1Heading">111</span>   
         <span id="related2Heading">222</span>
     </div>
 
@@ -68,5 +68,18 @@
         <span class="userpic"><img src="{{ url_for('static', filename='userpic.png') }}" alt="userpic"></span>
         <span class="username">Andrianto Hadi</span>
     </div>
+
+<!-- JavaScript to limit character input -->
+<script>
+    document.getElementById('write').addEventListener('input', function() {
+        var maxChars = 10; // Maximum number of characters allowed
+        if (this.value.length > maxChars) {
+            this.value = this.value.slice(0, maxChars); // Limit input to maxChars characters
+            alert('You have exceeded the character limit!');
+        }
+    });
+</script>
+
+
 </body>
 </html>

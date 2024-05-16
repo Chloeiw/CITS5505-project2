@@ -232,7 +232,7 @@
     padding-left: 15px;
     width: 475px;
     height: 39px;
-    top: 941px;
+    top: 901px;
     left: 661px;
     border-radius: 30px;
     border: 1px solid black;
@@ -245,7 +245,7 @@
 }
 .answer1 #button-send{
     position: absolute;
-    top: 945px;
+    top: 905px;
     left: 1195px;
     border-radius: 100px;
     gap: 8px;
@@ -299,13 +299,14 @@
 } */
 .post2{
     position: absolute;
-    top: 1068px;
+    top: 970px;
     left: 728px;
     width: 237px;
     height: 14px;
     font-family: Roboto;
     font-weight: 400;
-    font-size: 12px; 
+    font-size: 14px;
+    border: #000000 1px solid;
 }
 
 #like img{
