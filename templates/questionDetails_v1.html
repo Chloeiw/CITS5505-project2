@@ -21,7 +21,7 @@
     <div class="comment1">
         <div class="contentpic">
             <img src="{{ url_for('uploaded_file', filename=question.image) }}" alt="Content Picture">
-        </div>
+        </div> 
         <span class="usericon"><img src="{{ url_for('static', filename='usericon.png') }}" alt=""></span>
         <span class="usernameComment">{{ question.username }}</span>
         <span class="lastreply">Posted at {{ question.submission_time }}</span>
@@ -63,23 +63,26 @@
     </div>
 
     <div class="profilemenu">
-        <button type="profile" class="button-profile" onclick="">Profile</button>
-        <button type="addQuestion" class="button-addQuestion" onclick="">Add Question</button>
+        <button type="profile" class="button-profile" onclick=""><a href="/addQuestion_v1.html" style="text-decoration: none;">Profile</a></button>
+        <button type="addQuestion" class="button-addQuestion" onclick=""><a href="/addQuestion_v1.html" style="text-decoration: none;" >Add Question</a></button>
         <span class="userpic"><img src="{{ url_for('static', filename='userpic.png') }}" alt="userpic"></span>
         <span class="username">Andrianto Hadi</span>
     </div>
 
-<!-- JavaScript to limit character input -->
-<script>
-    document.getElementById('write').addEventListener('input', function() {
-        var maxChars = 10; // Maximum number of characters allowed
-        if (this.value.length > maxChars) {
-            this.value = this.value.slice(0, maxChars); // Limit input to maxChars characters
-            alert('You have exceeded the character limit!');
-        }
-    });
-</script>
-
-
+    <!-- JavaScript to limit character input -->
+    <script>
+        document.getElementById('write').addEventListener('input', function() {
+            var maxLength = 10; // Set the maximum character limit
+            
+            if (this.value.length > maxLength) {
+                // Limit input to maxLength characters
+                this.value = this.value.slice(0, maxLength);
+                
+                // Display an alert if character limit is exceeded
+                alert("Character limit exceeded! Maximum " + maxLength + " characters allowed.");
+            }
+        });
+    </script>
+    
 </body>
 </html>

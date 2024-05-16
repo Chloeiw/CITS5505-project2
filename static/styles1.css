@@ -78,6 +78,15 @@
     font-family: Roboto;
 }
 
+.profilemenu .button-addQuestion:hover{
+    background-color: #AE2717;
+    color: #FFFFFF;
+}
+.profilemenu .button-profile:hover{
+    background-color: #AE2717;
+    color: #FFFFFF;
+}
+
 .profilemenu .button-addQuestion{
     border-radius: 100px;
     background-color: #FFFFFF;
@@ -306,7 +315,6 @@
     font-family: Roboto;
     font-weight: 400;
     font-size: 14px;
-    border: #000000 1px solid;
 }
 
 #like img{
@@ -443,7 +451,6 @@
 }
 
 .answer-block p {
-    /* Answer text styles */
     font-family: Roboto;
     font-weight: 400;
     font-size: 14px;
@@ -451,11 +458,10 @@
 }
 
 .answer-block img {
-    /* Answer image styles */
     width: 48px;
     height: 47.08px;
 }
 
 .answer-block + .answer-block {
-    margin-top: 20px; /* Add spacing between each answer block */
+    margin-top: 20px; 
 }

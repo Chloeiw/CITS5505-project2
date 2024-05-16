@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from datetime import datetime
 import os
-from werkzeug.utils import secure_filename
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -68,7 +68,7 @@ def answer():
     answer = {
         'question_id': question_id,
         'text': answer_text,
-        'username': "Jason", 
+        'username': "User", 
         'answer_time': answer_time
     }
 
@@ -76,16 +76,15 @@ def answer():
     if 'file' in request.files:
         file = request.files['file']
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            unique_filename = f"{datetime.now().strftime('%Y%m%d%H%M%S')}_{filename}"
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], unique_filename)
+            filename = file.filename
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
-            answer['image'] = unique_filename
+            answer['image'] = filename
 
     answers.append(answer)
     return redirect(url_for('question_details', question_id=question_id))
 
-@app.route('/uploads/<filename>')
+@app.route('/uploads/<filename>', methods=['GET'])
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
