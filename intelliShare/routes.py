@@ -1,9 +1,9 @@
 from datetime import datetime
-from flask import request, render_template, redirect, session, url_for, Blueprint
+from flask import request, render_template, redirect, session, url_for, Blueprint, flash
 from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from .models import User
+from .models import Question, User
 
 main = Blueprint("main", __name__)
 
@@ -58,9 +58,19 @@ def answer():
 
 @main.route('/search', methods=['GET', 'POST'])
 def search():
-    #[TODO]
-    # Your code here
-    return render_template('search.html')
+    search_query = request.args.get('query')
+    search_results=[]
+    if search_query:
+            # Use the search_query to make a query to the database
+            search_results = Question.query.filter(Question.title.contains(search_query)).all()
+            # Check if search_results is empty
+            if not search_results:
+                error_message = "No matching questions found."
+                flash(error_message)
+    # Render a template and pass the search results to it
+
+        
+    return render_template('search.html', results=search_results)
 
 
 @main.route('/profile', methods=['GET', 'POST'])
@@ -68,3 +78,4 @@ def search():
 def profile():
     #[TODO]
     return "<h2>profile</h2>"
+    

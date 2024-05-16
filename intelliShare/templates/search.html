@@ -15,13 +15,13 @@
   </div>
   
   <div class="menubar">
-    <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('home') }}">Home</a></div>
+    <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('main.home') }}">Home</a></div>
     <div class="element" id="business"><img src="{{ url_for('static', filename='business.png') }}" alt="business"><a href="">Business</a></div>
     <div class="element" id="sports"><img src="{{ url_for('static', filename='sports.png') }}" alt="sports"><a href="">Sports</a></div>
   </div>
 
   <div class="searchbar">
-    <div class="search"><img src="{{ url_for('static', filename='search.png') }}" alt=""><a href="{{ url_for('search') }}">Search</a></div>
+    <div class="search"><img src="{{ url_for('static', filename='search.png') }}" alt=""><a href="{{ url_for('main.search') }}">Search</a></div>
   </div>
 
 <!-- Content -->
@@ -33,6 +33,16 @@
         <button type="submit">Search</button>
     </form>
 </div>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flashes">
+      {% for message in messages %}
+        <div class="flash">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
 
 
 
