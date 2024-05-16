@@ -15,7 +15,7 @@
   </div>
   
   <div class="menubar">
-    <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('index') }}">Home</a></div>
+    <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('home') }}">Home</a></div>
     <div class="element" id="business"><img src="{{ url_for('static', filename='business.png') }}" alt="business"><a href="">Business</a></div>
     <div class="element" id="sports"><img src="{{ url_for('static', filename='sports.png') }}" alt="sports"><a href="">Sports</a></div>
   </div>
@@ -56,8 +56,12 @@
 
 <!--  profile -->
 <div class="profilemenu">
-    <button type="profile" class="button-profile" onclick="">Profile</button>
-    <button type="addQuestion" class="button-addQuestion" onclick="">Add Question</button>
+    <form action="{{ url_for('profile') }}">
+        <button type="profile" class="button-profile">Profile</button>
+    </form>
+    <form action="{{ url_for('addQuestion') }}">
+        <button type="addQuestion" class="button-addQuestion">Add Question</button>
+    </form>
     <span class="userpic"><img src="../static/userpic.png" alt="userpic"></span>
     <span class="username">Andrianto Hadi</span>
     
