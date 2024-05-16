@@ -12,8 +12,8 @@
     </div>
     <div class="menubar">
         <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="">Home</a></div>
-        <div class="element" id="business"><img src="{{ url_for('static', filename='business.png') }}" alt="business"><a href="">Business</a></div>
-        <div class="element" id="sports"><img src="{{ url_for('static', filename='sports.png') }}" alt="sports"><a href="">Sports</a></div>
+<!--    <div class="element" id="business"><img src="{{ url_for('static', filename='business.png') }}" alt="business"><a href="">Business</a></div>
+        <div class="element" id="sports"><img src="{{ url_for('static', filename='sports.png') }}" alt="sports"><a href="">Sports</a></div> -->
         <div class="element" id="search"><img src="{{ url_for('static', filename='search.png') }}" alt="search"><a href="">Search</a></div>
     </div>
 
@@ -21,12 +21,12 @@
     <div class="comment1">
         <div class="contentpic">
             <img src="{{ url_for('uploaded_file', filename=question.image) }}" alt="Content Picture">
-        </div> 
+        </div>
         <span class="usericon"><img src="{{ url_for('static', filename='usericon.png') }}" alt=""></span>
         <span class="usernameComment">{{ question.username }}</span>
         <span class="lastreply">Posted at {{ question.submission_time }}</span>
 
-        <span id="group">{{ question.title }}</span>
+        <span id="group">{{ question.title }}</span>    
         <span id="title">{{ question.subtitle }}</span> 
         <span id="summary">{{ question.question }}</span>
         <div class="answer1">

@@ -101,7 +101,6 @@
     font-family: Roboto;
 }
 
-
 .profilemenu{
     padding: 10px;
     display: flex;
@@ -113,7 +112,6 @@
     left: 1300px; 
     border-radius: 6px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-
 }
 
 .profilemenu img{
@@ -236,12 +234,21 @@
     background-color: #FFFFFF;
     border: 1px soild black;
 }
+
+.answer1 form input[type="file"] {
+    position: absolute;  
+    width: 475px;
+    height: 39px;
+    top: 900px;
+    left: 670px;
+}
+
 .answer1 #write{
     position: absolute;  
     padding-left: 15px;
     width: 475px;
     height: 39px;
-    top: 901px;
+    top: 851px;
     left: 661px;
     border-radius: 30px;
     border: 1px solid black;
@@ -254,7 +261,7 @@
 }
 .answer1 #button-send{
     position: absolute;
-    top: 905px;
+    top: 856px;
     left: 1195px;
     border-radius: 100px;
     gap: 8px;
@@ -317,7 +324,7 @@
     font-size: 14px;
 }
 
-#like img{
+/* #like img{
     position: absolute;
     width: 18px;
     height: 18px;
@@ -337,7 +344,7 @@
     height: 18px;
     top: 1251px;
     left: 854px;
-}
+} */
 .icontitle1{
     position: absolute;
     width: 49px;

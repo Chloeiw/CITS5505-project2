@@ -25,7 +25,7 @@ def allowed_file(filename):
 
 # Route for the main page where questions can be added
 @app.route('/')
-def question():
+def index():
     return render_template('addQuestion_v1.html')
 
 # Route to handle question submissions
@@ -35,9 +35,20 @@ def submit():
         title = request.form['title']
         subtitle = request.form['subtitle']
         question = request.form['question']
-        username = "Andrianto Hadi"  
+        username = "Andrianto Hadi"  # This should be dynamically set based on the current user in a real app
         submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
         
+        # Initialize an empty image filename
+        image_filename = None
+        
+        # Handle file upload
+        if 'cover' in request.files:
+            file = request.files['cover']
+            if file and allowed_file(file.filename):
+                filename = file.filename
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filepath)
+
         question_id = len(questions) + 1
         questions.append({
             'id': question_id,
@@ -68,7 +79,7 @@ def answer():
     answer = {
         'question_id': question_id,
         'text': answer_text,
-        'username': "User", 
+        'username': "User",  # This should be dynamically set based on the current user in a real app
         'answer_time': answer_time
     }
 
@@ -79,12 +90,14 @@ def answer():
             filename = file.filename
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
+
             answer['image'] = filename
+
 
     answers.append(answer)
     return redirect(url_for('question_details', question_id=question_id))
 
-@app.route('/uploads/<filename>', methods=['GET'])
+@app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
