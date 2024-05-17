@@ -125,7 +125,7 @@ Description: The search page allows users to search for specific content within 
 
 ### 1. Register API
 
--   **Endpoint:** `/api/register`
+-   **Endpoint:** `/register`
 -   **Method:** POST
 -   **JSON Data:**
 
@@ -230,4 +230,17 @@ test Flask app using cmd as below
 ```
 pytest
 ```
+
+we test 5 apis:
+
+> test_home  `GET`
+
+> test_registration `POST`
+
+> test_question `POST`
+
+> test_answer `POST`
+
+> test_search `POST`
+
 
