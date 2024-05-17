@@ -1,21 +1,31 @@
 from datetime import datetime
 from flask import jsonify, request, render_template, redirect, session, url_for, Blueprint, flash
 from flask_login import login_user, login_required, logout_user
-
+import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import Question, User
 from .db import db
 main = Blueprint("main", __name__)
 
+# Temporary data storage
+questions = []
+answers = []
+
+# Configure upload folder and allowed extensions
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+# Ensure the upload directory exists
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+# Check if the uploaded file is allowed
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 @main.route('/')
 def home():
     posts = get_posts_from_database(0, 2)
-    user = User()
-    user.username = 'jason'
-    user.password = 'jason'
-    user.image = 'test.jpg'
-    db.session.add(user)
-    db.session.commit()
     return render_template('index.html', posts=posts)
 
 
@@ -52,21 +62,65 @@ def logout():
     session.pop('username', None)
     return redirect(url_for("main.home"))
 
-
 # create new question
-@main.route('/question', methods=['GET', 'POST'])
-@login_required
+@main.route('/addQuestion_v1', methods=['GET','POST'])
 def question():
-    #[TODO]
-    return "<h2>Question</h2>"
+    if request.method == 'POST':
+        title = request.form['title']
+        subtitle = request.form['subtitle']
+        question = request.form['question']
+        
+        username = "Andrianto Hadi"  # This should be dynamically set based on the current user in a real app
+        submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')       
+        # Handle file upload
+        if 'cover' in request.files:
+
+            file = request.files['cover']
+            if file and allowed_file(file.filename):
+                filename = file.filename
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filepath)
+
+        question_id = len(questions) + 1
+        questions.append({
+            'id': question_id,
+            'title': title,
+            'subtitle': subtitle,
+            'question': question,
+            'cover': filename,
+            'username': username,
+            'submission_time': submission_time
+        })
+        
+        return redirect(url_for('question_details'))
 
 
-@main.route('/answer', methods=['GET', 'POST'])
-@login_required
+
+# Route to handle answer submissions
+@main.route('/questionDetails_v1', methods=['GET','POST'])
 def answer():
-    #[TODO]
-    return "<h2>Question</h2>"
+    question_id = int(request.form['question_id'])
+    answer_text = request.form['answer']
+    answer_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
+    answer = {
+        'question_id': question_id,
+        'text': answer_text,
+        'username': "User",  # This should be dynamically set based on the current user in a real app
+        'answer_time': answer_time
+    }
 
+    # Handle file upload
+    if 'file' in request.files:
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = file.filename
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+
+            answer['image'] = filename
+
+    answers.append(answer)
+    return redirect(url_for('question_details'))
 
 @main.route('/profile', methods=['GET', 'POST'])
 @login_required
@@ -74,7 +128,7 @@ def profile():
     #[TODO]
     return "<h2>profile</h2>"
 
-    # Route to display question details and answers
+# Route to display question details and answers
 @main.route('/questionDetails_v1/<int:question_id>')
 def question_details(question_id):
     question = next((q for q in questions if q['id'] == question_id), None)
@@ -96,4 +150,8 @@ def search():
             flash('No results found!')
 
     return render_template('search.html', results=results)
+
+@main.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
