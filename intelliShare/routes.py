@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import request, render_template, redirect, session, url_for, Blueprint, flash
+from flask import jsonify, request, render_template, redirect, session, url_for, Blueprint, flash
 from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -11,8 +11,14 @@ main = Blueprint("main", __name__)
 
 @main.route('/')
 def home():
-    #[TODO]
-    posts = [
+    posts = get_posts_from_database(0, 2)
+    return render_template('index.html', posts=posts)
+
+
+def get_posts_from_database(start, limit):
+    # This is a placeholder function. Replace it with actual database query later.
+    # return Post.query.order_by(Post.timestamp.desc()).offset(start).limit(limit).all()
+    all_posts = [
         {
             'question_id': 1,
             'question': 'What is the smartest animal?',
@@ -20,17 +26,29 @@ def home():
             'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
             'content': 'Pantabangan town was submerged in the 1970s to build a reservoir...'
         },
-               {
+        {
             'question_id': 2,
             'question': 'What is the smartest animal?',
             'username': 'John',
             'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
             'content': 'Pantabangan town was submerged in the 1970s to build a reservoir...'
+        },
+        {
+            'question_id': 3,
+            'question': 'What is the smartest animal?',
+            'username': 'John',
+            'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+            'content': 'Pantabangan town was submerged in the 1970s to build a reservoir...'
+        },
+        {
+            'question_id': 4,
+            'question': 'What is the smartest animal?',
+            'username': 'John',
+            'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+            'content': 'Pantabangan town was submerged in the 1970s to build a reservoir...'
         }
-
     ]
-    return render_template('index.html', posts=posts)
-
+    return all_posts[start:start+limit]
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():
@@ -95,3 +113,10 @@ def question_details(question_id):
         return "Question not found", 404
     question_answers = [a for a in answers if a['question_id'] == question_id]
     return render_template('questionDetails_v1.html', question=question, answers=question_answers)
+
+@main.route('/get_posts')
+def get_posts():
+    start = request.args.get('start', 0, type=int)
+    limit = request.args.get('limit', 3, type=int)
+    posts = get_posts_from_database(start, limit)
+    return jsonify(posts)
