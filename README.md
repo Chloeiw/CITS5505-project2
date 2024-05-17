@@ -140,7 +140,7 @@ Description: The search page allows users to search for specific content within 
 
 ### 2. Login API
 
--   **Endpoint:** `/api/login`
+-   **Endpoint:** `/login`
 -   **Method:** POST
 -   **JSON Data:**
 
@@ -155,7 +155,7 @@ Description: The search page allows users to search for specific content within 
 
 ### 3. Logout API
 
--   **Endpoint:** `/api/logout`
+-   **Endpoint:** `/logout`
 -   **Method:** POST
 -   **JSON Data:**
 
@@ -169,7 +169,7 @@ Description: The search page allows users to search for specific content within 
 
 ### 4. Create Question API
 
--   **Endpoint:** `/api/createQuestion`
+-   **Endpoint:** `/createQuestion`
 -   **Method:** POST
 -   **JSON Data:**
 
@@ -187,7 +187,7 @@ Description: The search page allows users to search for specific content within 
 
 ### 5. Answer Question API
 
--   **Endpoint:** `/api/answerQuestion`
+-   **Endpoint:** `/answerQuestion`
 -   **Method:** POST
 -   **JSON Data:**
 
@@ -203,13 +203,13 @@ Description: The search page allows users to search for specific content within 
 
 ### 6. Delete Question API
 
--   **Endpoint:** `/api/delQuestion/{question_id}`
+-   **Endpoint:** `/delQuestion/{question_id}`
 -   **Method:** DELETE
 -   **Description:** This API allows an authenticated user to delete their own question. The user needs to provide the question ID as part of the endpoint URL. The API will verify ownership and delete the question from the database, along with its associated answers and comments.
 
 ### 7. Search Question API
 
--   **Endpoint:** `/api/searchQuestion`
+-   **Endpoint:** `/searchQuestion`
 -   **Method:** POST
 -   **Description:** This API enables users to search for questions based on specific criteria. Users can include search parameters in the request query string, such as keywords, category, or other filters. The API will query the database and return a list of relevant questions that match the search criteria.
 
