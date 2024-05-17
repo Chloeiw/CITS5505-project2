@@ -69,7 +69,6 @@ def question():
         title = request.form['title']
         subtitle = request.form['subtitle']
         question = request.form['question']
-        
         username = "Andrianto Hadi"  # This should be dynamically set based on the current user in a real app
         submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')       
         # Handle file upload
@@ -92,12 +91,18 @@ def question():
             'submission_time': submission_time
         })
         
-        return redirect(url_for('question_details'))
+        return redirect(url_for('question_details', question_id=question_id))
 
+@main.route('/addQuestion_v1.html')
+def add():
+    return render_template('addQuestion_v1.html')
 
+@main.route('/questionDetails_v1.html')
+def details():
+    return render_template('questionDetails_v1.html')
 
 # Route to handle answer submissions
-@main.route('/questionDetails_v1', methods=['GET','POST'])
+@main.route('/questionDetails_v1.html', methods=['GET','POST'])
 def answer():
     question_id = int(request.form['question_id'])
     answer_text = request.form['answer']
@@ -129,7 +134,7 @@ def profile():
     return "<h2>profile</h2>"
 
 # Route to display question details and answers
-@main.route('/questionDetails_v1/<int:question_id>')
+@main.route('/questionDetails_v1.html/<int:question_id>')
 def question_details(question_id):
     question = next((q for q in questions if q['id'] == question_id), None)
     if not question:
