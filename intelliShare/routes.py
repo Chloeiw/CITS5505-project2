@@ -4,7 +4,7 @@ from flask_login import login_user, login_required, logout_user
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import Question, User
-from .db import db
+
 main = Blueprint("main", __name__)
 
 # Temporary data storage
@@ -29,21 +29,8 @@ def home():
     return render_template('index.html', posts=posts)
 
 
-class Post:
-    def __init__(self, question_id, question, username, timestamp, content):
-        self.question_id = question_id
-        self.question = question
-        self.username = username
-        self.timestamp = timestamp
-        self.content = content
-
 def get_posts_from_database(start, limit):
-    all_posts = [
-        Post(1, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
-        Post(2, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
-        Post(3, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
-        Post(4, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...')
-    ]
+    all_posts = Question.query.order_by(desc(Question.post_time)).all()  # get all posts ordered by timestamp
     return all_posts[start:start+limit]
 
 @main.route('/login', methods=['GET', 'POST'])
@@ -56,7 +43,7 @@ def register():
     #[TODO]
     return "<h2>Register</h2>"
 
-@main.route('/logout')
+@main.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
     session.pop('username', None)
@@ -149,14 +136,10 @@ def search():
 
     if query:  # only search if a query is provided
         all_posts = get_posts_from_database(0, 100)  # get all posts
-        results = [post for post in all_posts if query in post.question]  # search in post question
+        results = [post for post in all_posts if query in post.title]  # search in post title
 
-        if not results:
+        if len(results)==0 :
             flash('No results found!')
 
     return render_template('search.html', results=results)
-
-@main.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 

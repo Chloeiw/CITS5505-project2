@@ -32,9 +32,8 @@
       <input type="text" id="query" name="query" placeholder="Find a question, or answer">
       <button type="submit">Search</button>
   </form>
-</div>
 
-{% with messages = get_flashed_messages() %}
+  {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
     {% for message in messages %}
@@ -42,12 +41,16 @@
     {% endfor %}
     </ul>
   {% endif %}
-{% endwith %}
 
-{% for post in results %}
-  <h2>{{ post.title }}</h2>
-  <p>{{ post.content }}</p>
-{% endfor %}
+  {% endwith %}
+    {% for result in results %}
+      <h2>{{ result.title }}</h2>
+      <p>{{ result.content }}</p>
+  {% endfor %}
+</div>
+
+
+
 
 
 

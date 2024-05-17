@@ -10,48 +10,63 @@
 </head>
 <body>
 
-   <!--  menu bar -->
-  <div class="title">
-      IntelliShare
-  </div>
-  
-  <div class="menubar">
-    <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('main.home') }}">Home</a></div>
-    <div class="element" id="business"><img src="{{ url_for('static', filename='business.png') }}" alt="business"><a href="">Business</a></div>
-    <div class="element" id="sports"><img src="{{ url_for('static', filename='sports.png') }}" alt="sports"><a href="">Sports</a></div>
-  </div>
-
-  <div class="searchbar">
-    <div class="search"><img src="{{ url_for('static', filename='search.png') }}" alt=""><a href="{{ url_for('main.search') }}">Search</a></div>
-  </div>
-
-<!-- Content -->
-
-<!-- select posts go here-->
-<div class="content">
-    <div class="contentpic"><img src="../static/contentpic.png" alt="contentpic"></div>
-    <span id="articletitle">Philippines: Drought dries up dam to reveal centuries-old town</span>
-
-
-<!-- post -->
-<div class="question-container">
-    {% for post in posts %}
-    <div class="question">
-    <h2><a href="{{ url_for('main.question_details', question_id=post.question_id) }}">{{ post.question }}</a></h2>
-        <hr>
-        <span class="usericon"><img src="../static/usericon.png" alt=""></span>
-        <span class="usernameComment">{{ post.username }}</span>
-        <span class="lastreply">{{ post.timestamp }}</span>
-            <p>{{ post.content }}</p>
+    <!-- Menu bar -->
+    <div class="title">
+        IntelliShare
     </div>
-    {% endfor %}
 
-
-    <!-- More button -->
-    <div class="more-button-container">
-        <button class="more-button" id="loadMore">More</button>
+    <div class="menubar">
+        <div class="element" id="home">
+            <img src="{{ url_for('static', filename='home.png') }}" alt="home">
+            <a href="{{ url_for('main.home') }}">Home</a>
+        </div>
+        <div class="element" id="business">
+            <img src="{{ url_for('static', filename='business.png') }}" alt="business">
+            <a href="">Business</a>
+        </div>
+        <div class="element" id="sports">
+            <img src="{{ url_for('static', filename='sports.png') }}" alt="sports">
+            <a href="">Sports</a>
+        </div>
     </div>
-</div>
+
+    <div class="searchbar">
+        <div class="search">
+            <img src="{{ url_for('static', filename='search.png') }}" alt="">
+            <a href="{{ url_for('main.search') }}">Search</a>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <!-- Select posts go here -->
+    <div class="content">
+        <div class="contentpic">
+            <img src="../static/contentpic.png" alt="contentpic">
+        </div>
+        <span id="articletitle">Philippines: Drought dries up dam to reveal centuries-old town</span>
+
+        <!-- Post -->
+        <div class="question-container">
+            {% for post in posts %}
+            <div class="question">
+                <h2>
+                    <a href="{{ url_for('main.question_details', question_id=post.id) }}">{{ post.title }}</a>
+                </h2>
+                <hr>
+                <span class="usericon">
+                    <img src="../static/usericon.png" alt="">
+                </span>
+                <span class="usernameComment">{{ post.username }}</span>
+                <span class="lastreply">{{ post.timestamp }}</span>
+                <p>{{ post.content }}</p>
+            </div>
+            {% endfor %}
+
+            <!-- More button -->
+            <div class="more-button-container">
+                <button class="more-button" id="loadMore">More</button>
+            </div>
+        </div>
 
 
 
@@ -61,7 +76,7 @@
         <button type="profile" class="button-profile">Profile</button>
     </form>
     <form action="{{ url_for('main.question') }}">
-        <button type="addQuestion" class="button-addQuestion"><a href="addQuestion_v1.html">Add Question</a></button>
+        <button type="addQuestion" class="button-addQuestion">Add Question</button>
     </form>
     <span class="userpic"><img src="../static/userpic.png" alt="userpic"></span>
     <span class="username">Andrianto Hadi</span>
@@ -72,6 +87,8 @@
 
 
 
-<script src="{{ url_for('static', filename='scripts_home.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='scripts_home.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>
