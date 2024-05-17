@@ -13,7 +13,7 @@ function showAlert(message) {
     alertModal.style.display = 'block';
     setTimeout(() => {
         alertModal.style.display = 'none';
-    }, 3000); // 3秒后隐藏提示框
+    }, 3000);
 }
 
 function login() {
@@ -43,7 +43,7 @@ function login() {
             }
         });
     } else {
-        showAlert('请输入正确的用户名和密码');
+        showAlert('Input the Correct Username and Password!');
     }
 }
 
