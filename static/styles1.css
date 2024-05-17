@@ -465,8 +465,8 @@
 }
 
 .answer-block img {
-    width: 48px;
-    height: 47.08px;
+    width: auto;
+    height: 150px;
 }
 
 .answer-block + .answer-block {

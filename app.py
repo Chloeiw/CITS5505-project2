@@ -13,7 +13,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # Ensure the upload directory exists
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
-
+    
 # Temporary data storage
 questions = []
 answers = []
@@ -36,13 +36,10 @@ def submit():
         subtitle = request.form['subtitle']
         question = request.form['question']
         username = "Andrianto Hadi"  # This should be dynamically set based on the current user in a real app
-        submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
-        
-        # Initialize an empty image filename
-        image_filename = None
-        
+        submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')       
         # Handle file upload
         if 'cover' in request.files:
+
             file = request.files['cover']
             if file and allowed_file(file.filename):
                 filename = file.filename
@@ -55,6 +52,7 @@ def submit():
             'title': title,
             'subtitle': subtitle,
             'question': question,
+            'cover': filename,
             'username': username,
             'submission_time': submission_time
         })
@@ -92,7 +90,6 @@ def answer():
             file.save(filepath)
 
             answer['image'] = filename
-
 
     answers.append(answer)
     return redirect(url_for('question_details', question_id=question_id))
