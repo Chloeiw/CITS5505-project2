@@ -20,6 +20,13 @@ def home():
             'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
             'content': 'Pantabangan town was submerged in the 1970s to build a reservoir...'
         },
+               {
+            'question_id': 2,
+            'question': 'What is the smartest animal?',
+            'username': 'John',
+            'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+            'content': 'Pantabangan town was submerged in the 1970s to build a reservoir...'
+        }
 
     ]
     return render_template('index.html', posts=posts)
