@@ -223,5 +223,11 @@ in repo foler run cmd below
 flask --app intelliShare run --debug
 ```
 
-
 ## Instruction for Testing
+
+test Flask app using cmd as below
+
+```
+pytest
+```
+
