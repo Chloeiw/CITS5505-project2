@@ -34,7 +34,7 @@ def register():
     #[TODO]
     return "<h2>Register</h2>"
 
-@main.route('/logout')
+@main.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
     session.pop('username', None)
