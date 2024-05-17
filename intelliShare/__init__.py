@@ -26,6 +26,8 @@ def create_app(database_uri="sqlite:///IntelliShare.db"):
     db.init_app(app)
 
     login_manager.init_app(app)
+    with app.app_context():
+        db.create_all()
 
     @login_manager.user_loader
     def load_user(user_id):

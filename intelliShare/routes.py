@@ -4,14 +4,18 @@ from flask_login import login_user, login_required, logout_user
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import Question, User
-
+from .db import db
 main = Blueprint("main", __name__)
-
-
 
 @main.route('/')
 def home():
     posts = get_posts_from_database(0, 2)
+    user = User()
+    user.username = 'jason'
+    user.password = 'jason'
+    user.image = 'test.jpg'
+    db.session.add(user)
+    db.session.commit()
     return render_template('index.html', posts=posts)
 
 
