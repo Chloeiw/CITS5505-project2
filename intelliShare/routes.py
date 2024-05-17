@@ -6,10 +6,11 @@ from sqlalchemy import desc
 
 questions = []
 answers = []
-
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+# Check if the uploaded file is allowed
 def allowed_file(filename):
-    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def configure_routes(app, db):
 
@@ -56,14 +57,26 @@ def configure_routes(app, db):
         username = "Andrianto Hadi"  # This should be dynamically set based on the current user in a real app
         submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
         question_id = len(questions) + 1
+        # Handle file upload
+        if 'cover' in request.files:
+
+            file = request.files['cover']
+            if file and allowed_file(file.filename):
+                filename = file.filename
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filepath)
+               
+        question_id = len(questions) + 1
         questions.append({
             'id': question_id,
             'title': title,
             'subtitle': subtitle,
             'question': question,
+            'cover': filename,
             'username': username,
             'submission_time': submission_time
         })
+
         return redirect(url_for('question_details', question_id=question_id))
 
     # Route to display question details and answers
@@ -82,20 +95,20 @@ def configure_routes(app, db):
         answer_text = request.form['answer']
         username = "Andrianto Hadi"  # This should be dynamically set based on the current user in a real app
         submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
-        answer_id = len(answers) + 1
         answer = {
-            'id': answer_id,
             'question_id': question_id,
-            'answer': answer_text,
-            'username': username,
-            'submission_time': submission_time
+            'text': answer_text,
+            'username': "User",  # This should be dynamically set based on the current user in a real app
+            'answer_time': answer_time
         }
+        # Handle file upload
         if 'file' in request.files:
             file = request.files['file']
             if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
+                filename = file.filename
                 filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 file.save(filepath)
+
                 answer['image'] = filename
         answers.append(answer)
         return redirect(url_for('question_details', question_id=question_id))

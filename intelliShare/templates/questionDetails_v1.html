@@ -7,26 +7,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles1_question.css') }}">
 </head>
 <body>
-    <div id="container">
+   <!--  <div id="container">  
         <span class="title">IntelliShare</span>
-    </div>
+    </div> -->
     <div class="menubar">
         <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="">Home</a></div>
-        <div class="element" id="business"><img src="{{ url_for('static', filename='business.png') }}" alt="business"><a href="">Business</a></div>
-        <div class="element" id="sports"><img src="{{ url_for('static', filename='sports.png') }}" alt="sports"><a href="">Sports</a></div>
         <div class="element" id="search"><img src="{{ url_for('static', filename='search.png') }}" alt="search"><a href="">Search</a></div>
     </div>
 
     <!-- Content -->
     <div class="comment1">
         <div class="contentpic">
-            <img src="{{ url_for('uploaded_file', filename=question.image) }}" alt="Content Picture">
+            <img src="{{ url_for('uploaded_file', filename=question.cover) }}" alt="Content Picture">
         </div>
         <span class="usericon"><img src="{{ url_for('static', filename='usericon.png') }}" alt=""></span>
         <span class="usernameComment">{{ question.username }}</span>
         <span class="lastreply">Posted at {{ question.submission_time }}</span>
 
-        <span id="group">{{ question.title }}</span>
+        <span id="group">{{ question.title }}</span>    
         <span id="title">{{ question.subtitle }}</span> 
         <span id="summary">{{ question.question }}</span>
         <div class="answer1">
@@ -38,19 +36,19 @@
             </form>
         </div>
     </div>
-<!-- Display answers -->
-<div class="post2">
-    {% for answer in answers %}
-    <div class="answer-block">
-        <span class="usernameAnswer">{{ answer.username }}</span>
-        <span class="lastAnswer">Answered at {{ answer.answer_time }}</span>
-        {% if answer.image %}
-        <img src="{{ url_for('uploaded_file', filename=answer.image) }}" alt="Answer Image">
-        {% endif %}
-        <p>{{ answer.text }}</p>
+    <!-- Display answers -->
+    <div class="post2">
+        {% for answer in answers %}
+        <div class="answer-block">
+            <span class="usernameAnswer2">{{ answer.username }}</span>
+            <br><span class="lastAnswer2">Answered at {{ answer.answer_time }}</span>
+            {% if answer.image %}
+            <img src="{{ url_for('uploaded_file', filename=answer.image) }}" alt="Answer Image">
+            {% endif %}
+            <p>{{ answer.text }}</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
     <div class="relatedContainer">
         <span class="titleRelated">Related</span>
@@ -58,15 +56,31 @@
         <span id="related2"><a href=""><img src="{{ url_for('static', filename='related2.png') }}" alt="related2"></a></span>
         <span id="related1Title"><a href="" style="text-decoration: none; color: #8F8D90;">Question . Travel</a></span>
         <span id="related2Title"><a href="" style="text-decoration: none; color: #8F8D90;">Question . Business</a></span>
-        <span id="related1Heading">111</span>
+        <span id="related1Heading">111</span>   
         <span id="related2Heading">222</span>
     </div>
 
     <div class="profilemenu">
-        <button type="profile" class="button-profile" onclick="">Profile</button>
-        <button type="addQuestion" class="button-addQuestion" onclick="">Add Question</button>
+        <button type="profile" class="button-profile" onclick=""><a href="/addQuestion_v1.html" style="text-decoration: none;">Profile</a></button>
+        <button type="addQuestion" class="button-addQuestion" onclick=""><a href="/addQuestion_v1.html" style="text-decoration: none;" >Add Question</a></button>
         <span class="userpic"><img src="{{ url_for('static', filename='userpic.png') }}" alt="userpic"></span>
         <span class="username">Andrianto Hadi</span>
     </div>
+
+    <!-- JavaScript to limit character input -->
+    <script>
+        document.getElementById('write').addEventListener('input', function() {
+            var maxLength = 10; // Set the maximum character limit
+            
+            if (this.value.length > maxLength) {
+                // Limit input to maxLength characters
+                this.value = this.value.slice(0, maxLength);
+                
+                // Display an alert if character limit is exceeded
+                alert("Character limit exceeded! Maximum " + maxLength + " characters allowed.");
+            }
+        });
+    </script>
+        
 </body>
 </html>

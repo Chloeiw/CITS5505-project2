@@ -78,6 +78,15 @@
     font-family: Roboto;
 }
 
+.profilemenu .button-addQuestion:hover{
+    background-color: #AE2717;
+    color: #FFFFFF;
+}
+.profilemenu .button-profile:hover{
+    background-color: #AE2717;
+    color: #FFFFFF;
+}
+
 .profilemenu .button-addQuestion{
     border-radius: 100px;
     background-color: #FFFFFF;
@@ -92,7 +101,6 @@
     font-family: Roboto;
 }
 
-
 .profilemenu{
     padding: 10px;
     display: flex;
@@ -104,7 +112,6 @@
     left: 1300px; 
     border-radius: 6px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-
 }
 
 .profilemenu img{
@@ -227,12 +234,21 @@
     background-color: #FFFFFF;
     border: 1px soild black;
 }
+
+.answer1 form input[type="file"] {
+    position: absolute;  
+    width: 475px;
+    height: 39px;
+    top: 900px;
+    left: 670px;
+}
+
 .answer1 #write{
     position: absolute;  
     padding-left: 15px;
     width: 475px;
     height: 39px;
-    top: 941px;
+    top: 851px;
     left: 661px;
     border-radius: 30px;
     border: 1px solid black;
@@ -245,7 +261,7 @@
 }
 .answer1 #button-send{
     position: absolute;
-    top: 945px;
+    top: 856px;
     left: 1195px;
     border-radius: 100px;
     gap: 8px;
@@ -257,21 +273,18 @@
     border: none
 }
 
-
-
 /* post2 */
-.post2 img{
+/* .post2 img{
     width: 48px;
     height: 47.08px;
     position: absolute;
     top: 1043px;
     left: 660px;
     display: block;
-    margin-bottom: 20px; /* Adjust the margin as needed */
+    margin-bottom: 20px;
     clear: both;
 }
-
-.usernameAnswer{
+.usernameAnswer2{
     position: absolute;
     top: 1048px;
     left: 728px;
@@ -279,7 +292,7 @@
     font-weight: 400;
     font-size: 14px;
 }
-.lastAnswer{
+.lastAnswer2{
     position: absolute;
     top: 1068px;
     left: 728px;
@@ -289,7 +302,6 @@
     font-weight: 400;
     font-size: 12px; 
 }
-
 .post2 p{
     position: absolute;
     width: 599px;
@@ -300,9 +312,19 @@
     font-weight: 400;
     font-size: 14px;
     color: #000000;
+} */
+.post2{
+    position: absolute;
+    top: 970px;
+    left: 728px;
+    width: 237px;
+    height: 14px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
 }
 
-#like img{
+/* #like img{
     position: absolute;
     width: 18px;
     height: 18px;
@@ -322,7 +344,7 @@
     height: 18px;
     top: 1251px;
     left: 854px;
-}
+} */
 .icontitle1{
     position: absolute;
     width: 49px;
@@ -436,7 +458,6 @@
 }
 
 .answer-block p {
-    /* Answer text styles */
     font-family: Roboto;
     font-weight: 400;
     font-size: 14px;
@@ -444,11 +465,10 @@
 }
 
 .answer-block img {
-    /* Answer image styles */
-    width: 48px;
-    height: 47.08px;
+    width: auto;
+    height: 150px;
 }
 
 .answer-block + .answer-block {
-    margin-top: 20px; /* Add spacing between each answer block */
+    margin-top: 20px; 
 }
