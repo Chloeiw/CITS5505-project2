@@ -28,14 +28,26 @@
 
 <!-- search-->
 <div class="search-container">
-    <form method="post">
-        <input type="text" id="query" name="query" placeholder="Find a question, or answer">
-        <button type="submit">Search</button>
-    </form>
+  <form method="GET" action="/search">
+      <input type="text" id="query" name="query" placeholder="Find a question, or answer">
+      <button type="submit">Search</button>
+  </form>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% endwith %}
+    {% for result in results %}
+      <h2>{{ result.title }}</h2>
+      <p>{{ result.content }}</p>
+  {% endfor %}
 </div>
-
-
-
 
 <!--  profile -->
 <div class="profilemenu">

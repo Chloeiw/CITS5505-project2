@@ -31,13 +31,17 @@
         <div class="contentpic"><img src="../static/contentpic.png" alt="contentpic"></div>
         <span id="articletitle">Philippines: Drought dries up dam to reveal centuries-old town</span>
 
-        <!-- post -->
+        <!-- Post -->
         <div class="question-container">
+            {% for post in posts %}
             <div class="question">
-                {% for post in posts %}
-                <h2>{{ post.question }}</h2>
+                <h2>
+                    <a href="{{ url_for('question_details', question_id=post.id) }}">{{ post.title }}</a>
+                </h2>
                 <hr>
-                <span class="usericon"><img src="../static/usericon.png" alt=""></span>
+                <span class="usericon">
+                    <img src="../static/usericon.png" alt="">
+                </span>
                 <span class="usernameComment">{{ post.username }}</span>
                 <span class="lastreply">{{ post.timestamp }}</span>
                 <p>{{ post.content }}</p>

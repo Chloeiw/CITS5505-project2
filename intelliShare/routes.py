@@ -1,7 +1,8 @@
-from flask import render_template, request, redirect, url_for, send_from_directory, jsonify
+from flask import render_template, request, redirect, url_for, send_from_directory, jsonify, flash, session
 from datetime import datetime
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import desc
 
 questions = []
 answers = []
@@ -133,17 +134,25 @@ def configure_routes(app, db):
     
     @app.route('/')
     def home():
-        posts = [
-            {
-                'question': 'What is the smartest animal?',
-                'username': 'John',
-                'timestamp': datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
-                'content': 'Pantabangan town was submerged in the 1970s to build a reservoir...'
-            },
+        return render_template('index.html')
+    #    posts = get_posts_from_database(0, 2)
+    #   return render_template('index.html', posts=posts)
 
-        ]
-        return render_template('index.html', posts=posts)
+
+    #def get_posts_from_database(start, limit):
+    #    all_posts = Question.query.order_by(desc(Question.post_time)).all()  # get all posts ordered by timestamp
+    #   return all_posts[start:start+limit]
     
-    @app.route('/search')
+    @app.route('/search', methods=['GET', 'POST'])
     def search():
-        return render_template('search.html')
+        query = request.args.get('query')
+        results = []
+
+        if query:  # only search if a query is provided
+            all_posts = get_posts_from_database(0, 100)  # get all posts
+            results = [post for post in all_posts if query in post.title]  # search in post title
+
+            if len(results)==0 :
+                flash('No results found!')
+
+        return render_template('search.html', results=results)
