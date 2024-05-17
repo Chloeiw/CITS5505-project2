@@ -17,8 +17,6 @@ def home():
     return render_template('index.html', posts=posts)
 
 
-
-
 def get_posts_from_database(start, limit):
     all_posts = Question.query.order_by(desc(Question.post_time)).all()  # get all posts ordered by timestamp
     return all_posts[start:start+limit]
@@ -83,4 +81,3 @@ def search():
             flash('No results found!')
 
     return render_template('search.html', results=results)
-

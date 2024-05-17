@@ -33,9 +33,19 @@
       <button type="submit">Search</button>
   </form>
 
-  {% for result in results %}
-    <h2>{{ result.title }}</h2>
-    <p>{{ result.content }}</p>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% endwith %}
+    {% for result in results %}
+      <h2>{{ result.title }}</h2>
+      <p>{{ result.content }}</p>
   {% endfor %}
 </div>
 
