@@ -22,7 +22,7 @@
         </div>
 
         <!-- Content -->
-        <form id="add-question" action="/questionDetails_v1.html" method="post" enctype="multipart/form-data">
+        <form id="add-question" action="{{ url_for('main.add_question') }}" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title<span class="asterisk">*</span></label>
                 <input type="text" id="title" name="title" required>

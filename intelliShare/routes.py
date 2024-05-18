@@ -62,21 +62,21 @@ def logout():
     return redirect(url_for("main.home"))
 
 # create new question
-@main.route('/addQuestion_v1', methods=['GET','POST'])
-def question():
+@main.route('/addQuestion_v1', methods=['GET', 'POST'])
+def add_question():
     if request.method == 'POST':
         title = request.form['title']
         subtitle = request.form['subtitle']
-        question = request.form['question']
-        username = "Andrianto Hadi"  # This should be dynamically set based on the current user in a real app
-        submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')       
-        # Handle file upload
+        question_text = request.form['question']
+        username = "Andrianto Hadi"  # Should be dynamically set based on the logged-in user
+        submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
+        
+        filename = None
         if 'cover' in request.files:
-
             file = request.files['cover']
             if file and allowed_file(file.filename):
                 filename = file.filename
-                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                filepath = os.path.join(UPLOAD_FOLDER, filename)
                 file.save(filepath)
 
         question_id = len(questions) + 1
@@ -84,13 +84,15 @@ def question():
             'id': question_id,
             'title': title,
             'subtitle': subtitle,
-            'question': question,
+            'question': question_text,
             'cover': filename,
             'username': username,
             'submission_time': submission_time
         })
         
-        return redirect(url_for('question_details', question_id=question_id))
+        return redirect(url_for('main.question_details', question_id=question_id))
+    
+    return render_template('addQuestion_v1.html')
 
 @main.route('/addQuestion_v1.html')
 def add():
