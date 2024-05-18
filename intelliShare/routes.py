@@ -28,9 +28,21 @@ def home():
     posts = get_posts_from_database(0, 2)
     return render_template('index.html', posts=posts)
 
+class Post:
+    def __init__(self, question_id, question, username, timestamp, content):
+        self.question_id = question_id
+        self.question = question
+        self.username = username
+        self.timestamp = timestamp
+        self.content = content
 
 def get_posts_from_database(start, limit):
-    all_posts = Question.query.order_by(desc(Question.post_time)).all()  # get all posts ordered by timestamp
+    all_posts = [
+        Post(1, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
+        Post(2, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
+        Post(3, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
+        Post(4, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...')
+    ]
     return all_posts[start:start+limit]
 
 @main.route('/login', methods=['GET', 'POST'])
@@ -115,7 +127,6 @@ def answer():
     return redirect(url_for('question_details'))
 
 @main.route('/profile', methods=['GET', 'POST'])
-@login_required
 def profile():
     #[TODO]
     return "<h2>profile</h2>"
@@ -136,10 +147,11 @@ def search():
 
     if query:  # only search if a query is provided
         all_posts = get_posts_from_database(0, 100)  # get all posts
-        results = [post for post in all_posts if query in post.title]  # search in post title
+        results = [post for post in all_posts if query in post.question]  # search in post question
 
-        if len(results)==0 :
+        if not results:
             flash('No results found!')
 
     return render_template('search.html', results=results)
+
 
