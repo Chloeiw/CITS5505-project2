@@ -31,7 +31,7 @@ class Question(db.Model):
             'content': self.content,
             'cover': self.cover,
             'post_time': self.post_time,
-            'category_id': self.category_id,
+            #'category_id': self.category_id,
             'user_id': self.user_id,
             # 'user': self.user.to_dict() 
         }
