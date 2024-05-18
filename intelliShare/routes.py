@@ -126,7 +126,7 @@ def answer():
             answer['image'] = filename
 
     answers.append(answer)
-    return redirect(url_for('question_details'))
+    return redirect(url_for('main.question_details', question_id=question_id))
 
 @main.route('/profile', methods=['GET', 'POST'])
 def profile():
