@@ -1,10 +1,11 @@
 from datetime import datetime
-from flask import jsonify, request, render_template, redirect, session, url_for, Blueprint, flash, send_from_directory
+from flask import abort, jsonify, request, render_template, redirect, session, url_for, Blueprint, flash, send_from_directory
 from flask_login import login_user, login_required, logout_user
 import os
 from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import Question, User
+from .models import Question, User,Answer
+from .db import db
 
 main = Blueprint("main", __name__)
 
@@ -89,7 +90,8 @@ def add_question():
         title = request.form['title']
         subtitle = request.form['subtitle']
         question_text = request.form['question']
-        username = "Andrianto Hadi"  # Should be dynamically set based on the logged-in user
+        user_id = 'user_id'
+        username = 'username'
         submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
         
         filename = None
@@ -108,9 +110,23 @@ def add_question():
             'question': question_text,
             'cover': filename,
             'username': username,
-            'submission_time': submission_time
+            'submission_time': submission_time,
+            'user_id': user_id
         })
         
+        new_question = Question()
+
+        new_question.title = title
+        new_question.subtitle = subtitle
+        new_question.content = question_text
+        new_question.cover = filename
+        new_question.post_time = submission_time  
+        new_question.user_id = user_id
+        new_question.username = username
+
+        db.session.add(new_question)
+        db.session.commit()
+
         return redirect(url_for('main.question_details', question_id=question_id))
     
     return render_template('addQuestion_v1.html')
@@ -129,12 +145,13 @@ def answer():
     question_id = int(request.form['question_id'])
     answer_text = request.form['answer']
     answer_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
-    answer = {
-        'question_id': question_id,
-        'text': answer_text,
-        'username': "User",  # This should be dynamically set based on the current user in a real app
-        'answer_time': answer_time
-    }
+    username = username
+    user_id = 'uesr_id'
+
+    new_answer = answer(text=answer_text, answer_time=answer_time, user_id=user_id, question_id=question_id)
+
+    db.session.add(new_answer)
+    db.session.commit()
 
     # Handle file upload
     if 'file' in request.files:
@@ -211,3 +228,15 @@ def get_more_posts():
     limit = request.args.get('limit', type=int)
     more_questions = get_posts_from_database(start, limit)  # Assuming this function now returns Question objects
     return jsonify([question.to_dict() for question in more_questions])
+
+@main.route('/questioninfo/<int:question_id>')
+def question_details_copy(question_id):
+    # Fetch the question from the database using question_id
+    question = Question.query.get(question_id)
+    if question is None:
+        abort(404)  # Not found
+    answers = Answer.query.filter_by(question_id=question_id).all()
+    print(answers)  # Print the answers to the console
+    return render_template('questioninfo.html', question=question, answers=answers)
+
+
