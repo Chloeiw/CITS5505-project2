@@ -43,8 +43,9 @@ class Answer(db.Model):
     answer_time = mapped_column(String, nullable=False)
     user_id = mapped_column(Integer, ForeignKey('users.id'), nullable=False)
     question_id = mapped_column(Integer, ForeignKey('question.id'), nullable=False)
-    user = relationship('User')
-    question = relationship('Question')
+    image = mapped_column(String)
+    # user = relationship('User')
+    # question = relationship('Question')
 
 # class Category(db.Model):
 #     __tablename__ = "category"

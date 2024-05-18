@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles_questionDetails.css') }}">
 </head>
 <body>
-   <!--  <div id="container">  
+    <div id="container">  
         <span class="title">IntelliShare</span>
-    </div> -->
+    </div>
     <div class="menubar">
         <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('main.home') }}">Home</a></div>
         <div class="element" id="search"><img src="{{ url_for('static', filename='search.png') }}" alt="search"><a href="{{ url_for('main.search') }}">Search</a></div>
@@ -45,7 +45,7 @@
             {% if answer.image %}
             <img src="{{ url_for('main.uploaded_file', filename=answer.image) }}" alt="Answer Image">
             {% endif %}
-            <p>{{ answer.text }}</p>
+            <p>{{ answer.comment }}</p>
         </div>
         {% endfor %}
     </div>

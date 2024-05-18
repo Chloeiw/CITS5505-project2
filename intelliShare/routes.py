@@ -129,16 +129,16 @@ def details():
 @main.route('/questionDetails_v1.html', methods=['GET','POST'])
 def answer():
     question_id = int(request.form['question_id'])
-    answer_text = request.form['answer']
+    comment = request.form['answer']
     answer_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
-    username = username
-    user_id = 'uesr_id'
-
-    new_answer = answer(text=answer_text, answer_time=answer_time, user_id=user_id, question_id=question_id)
-
-    db.session.add(new_answer)
-    db.session.commit()
-
+    user_id = 1
+    print(question_id, comment, answer_time)
+    new_answer = Answer()
+    new_answer.question_id=question_id
+    new_answer.comment=comment 
+    new_answer.answer_time=answer_time 
+    new_answer.user_id=user_id
+        
     # Handle file upload
     if 'file' in request.files:
         file = request.files['file']
@@ -146,10 +146,11 @@ def answer():
             filename = file.filename
             filepath = os.path.join(PROJ, UPLOAD_FOLDER, filename)
             file.save(filepath)
+            new_answer.image = filename
+    
+    db.session.add(new_answer)
+    db.session.commit()
 
-            answer['image'] = filename
-
-    answers.append(answer)
     return redirect(url_for('main.question_details', question_id=question_id))
 
 @main.route('/profile', methods=['GET', 'POST'])
@@ -162,8 +163,23 @@ def question_details(question_id):
     question = next((q for q in questions if q['id'] == question_id), None)
     if not question:
         return "Question not found", 404
-    question_answers = [a for a in answers if a['question_id'] == question_id]
-    return render_template('questionDetails_v1.html', question=question, answers=question_answers)
+
+    answers =  db.session.execute(db.select(Answer).filter_by(question_id=question_id)).all()
+    a_unames = [ db.session.execute(db.select(User).filter_by(id=a[0].user_id)).scalar_one_or_none() for a in answers]
+    a_unames = [ u.username for u in a_unames]
+    a_time = [a[0].answer_time for a in answers]
+    a_image = [a[0].image for a in answers]
+    a_comment = [a[0].comment for a in answers]
+    alist = []
+    for i in range(len(a_time)):
+        alist.append({
+            "username":a_unames[i],
+            "answer_time":a_time[i],
+            "image":a_image[i],
+            "comment": a_comment[i]
+        })
+    print(alist)
+    return render_template('questionDetails_v1.html', question=question, answers=alist)
 
 @main.route('/search', methods=['GET', 'POST'])
 def search():
