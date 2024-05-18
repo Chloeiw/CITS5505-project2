@@ -1,10 +1,11 @@
 from datetime import datetime
-from flask import Flask, jsonify, request, render_template, redirect, session, url_for, Blueprint, flash
+from flask import jsonify, request, render_template, redirect, session, url_for, Blueprint, flash, send_from_directory
 from flask_login import login_user, login_required, logout_user
 import os
-from .db import db
+from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import Question, User
+from .db import db
 
 main = Blueprint("main", __name__)
 
@@ -13,6 +14,7 @@ questions = []
 answers = []
 
 # Configure upload folder and allowed extensions
+PROJ='intelliShare'
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -37,16 +39,21 @@ class Post:
         self.timestamp = timestamp
         self.content = content
 
+        def to_dict(self):
+            return {
+                'id': self.id,
+                'title': self.title,
+                'content': self.content,
+                # ... other fields ...
+            }
+
+# Function to get posts from the database
 def get_posts_from_database(start, limit):
-    all_posts = [
-        Post(1, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
-        Post(2, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
-        Post(3, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
-        Post(4, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...')
-    ]
+    all_posts = Question.query.order_by(desc(Question.post_time)).all()  # get all posts ordered by timestamp
     return all_posts[start:start+limit]
 
 @main.route('/login', methods=['GET', 'POST'])
+
 def login():
     #[TODO]
     return "<h2>login</h2>"
@@ -78,7 +85,7 @@ def add_question():
             file = request.files['cover']
             if file and allowed_file(file.filename):
                 filename = file.filename
-                filepath = os.path.join(UPLOAD_FOLDER, filename)
+                filepath = os.path.join(PROJ, UPLOAD_FOLDER, filename)
                 file.save(filepath)
 
         question_id = len(questions) + 1
@@ -137,7 +144,7 @@ def answer():
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = file.filename
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            filepath = os.path.join(PROJ, UPLOAD_FOLDER, filename)
             file.save(filepath)
 
             answer['image'] = filename
@@ -147,8 +154,7 @@ def answer():
 
 @main.route('/profile', methods=['GET', 'POST'])
 def profile():
-    #[TODO]
-    return "<h2>profile</h2>"
+    return render_template('profile.html')
 
 # Route to display question details and answers
 @main.route('/questionDetails_v1.html/<int:question_id>')
@@ -166,7 +172,7 @@ def search():
 
     if query:  # only search if a query is provided
         all_posts = get_posts_from_database(0, 100)  # get all posts
-        results = [post for post in all_posts if query in post.question]  # search in post question
+        results = [post for post in all_posts if query in post.title]  # search in post question
 
         if not results:
             flash('No results found!')
@@ -174,3 +180,37 @@ def search():
     return render_template('search.html', results=results)
 
 
+
+    # Serve uploaded files
+@main.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
+
+
+# Route to handle profile submission
+@main.route('/submit_profile', methods=['POST'])
+def submit_profile():
+    username = request.form['username']
+    gender = request.form['gender']
+    occupation = request.form['occupation']
+    self_intro = request.form['selfIntro']
+    password = request.form['password']
+    security_question = request.form['securityQuestion']
+    security_answer = request.form['securityAnswer']
+        
+    # Print the received form data
+    print(f'Username: {username}')
+    print(f'Gender: {gender}')
+    print(f'Occupation: {occupation}')
+    print(f'Self Introduction: {self_intro}')
+    print(f'Password: {password}')
+    print(f'Security Question: {security_question}')
+    print(f'Security Answer: {security_answer}')
+        
+    return 'Profile submitted successfully!'
+@main.route('/get_more_posts', methods=['GET'])
+def get_more_posts():
+    start = request.args.get('start', type=int)
+    limit = request.args.get('limit', type=int)
+    more_questions = get_posts_from_database(start, limit)  # Assuming this function now returns Question objects
+    return jsonify([question.to_dict() for question in more_questions])

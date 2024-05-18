@@ -36,9 +36,9 @@
                 <input type="text" id="question" name="question" required>
             </div>
             <div class="form-group" >
-                <label for="cover">Cover<!-- <span class="asterisk">*</span> --></label>
-                <input type="file" name="cover" accept="image/*">
-                <!-- <br><input type="file" id="cover" name="cover"> -->
+                <label for="cover">Cover<span class="asterisk">*</span></label>
+                
+                <br><input type="file" id="cover" name="cover" required>
             </div>
             <div class="button-group">
                 <button type="submit" class="button-submit">Submit</button>
@@ -48,7 +48,7 @@
 
         <!--  profile -->
         <div class="profilemenu">
-            <button type="profile" class="button-profile">Profile</button>
+            <button type="profile" class="button-profile" onclick=""><a href="/profile">Profile</a></button>
          <span class="userpic"><img src="{{ url_for('static', filename='userpic.png') }}" alt="userpic"></span>
             <span class="username">Andrianto Hadi</span>
         </div>
