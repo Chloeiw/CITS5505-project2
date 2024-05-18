@@ -197,32 +197,3 @@ def get_more_posts():
     limit = request.args.get('limit', type=int)
     more_questions = get_posts_from_database(start, limit)  # Assuming this function now returns Question objects
     return jsonify([question.to_dict() for question in more_questions])
-
-
-# Route to handle profile submission
-@main.route('/submit_profile', methods=['POST'])
-def submit_profile():
-    username = request.form['username']
-    gender = request.form['gender']
-    occupation = request.form['occupation']
-    self_intro = request.form['selfIntro']
-    password = request.form['password']
-    security_question = request.form['securityQuestion']
-    security_answer = request.form['securityAnswer']
-        
-    # Print the received form data
-    print(f'Username: {username}')
-    print(f'Gender: {gender}')
-    print(f'Occupation: {occupation}')
-    print(f'Self Introduction: {self_intro}')
-    print(f'Password: {password}')
-    print(f'Security Question: {security_question}')
-    print(f'Security Answer: {security_answer}')
-        
-    return 'Profile submitted successfully!'
-@main.route('/get_more_posts', methods=['GET'])
-def get_more_posts():
-    start = request.args.get('start', type=int)
-    limit = request.args.get('limit', type=int)
-    more_questions = get_posts_from_database(start, limit)  # Assuming this function now returns Question objects
-    return jsonify([question.to_dict() for question in more_questions])

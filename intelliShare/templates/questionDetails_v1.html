@@ -11,9 +11,9 @@
         <span class="title">IntelliShare</span>
     </div> -->
     <div class="menubar">
-        <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="index.html">Home</a></div>
-        <div class="element" id="search"><img src="{{ url_for('static', filename='search.png') }}" alt="search"><a href="search.html">Search</a></div>
-    </div>
+        <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('main.home') }}">Home</a></div>
+        <div class="element" id="search"><img src="{{ url_for('static', filename='search.png') }}" alt="search"><a href="{{ url_for('main.search') }}">Search</a></div>
+      </div>
 
     <!-- Content -->
     <div class="comment1">
@@ -61,7 +61,7 @@
     </div>
 
     <div class="profilemenu">
-        <button type="profile" class="button-profile" onclick=""><a href="/addQuestion_v1.html" style="text-decoration: none;">Profile</a></button>
+        <button type="profile" class="button-profile" onclick=""><a href="/profile" style="text-decoration: none;">Profile</a></button>
         <button type="addQuestion" class="button-addQuestion" onclick=""><a href="/addQuestion_v1.html" style="text-decoration: none;" >Add Question</a></button>
         <span class="userpic"><img src="{{ url_for('static', filename='userpic.png') }}" alt="userpic"></span>
         <span class="username">Andrianto Hadi</span>
