@@ -131,8 +131,7 @@ def answer():
 
 @main.route('/profile', methods=['GET', 'POST'])
 def profile():
-    #[TODO]
-    return "<h2>profile</h2>"
+    return render_template('profile.html')
 
 # Route to display question details and answers
 @main.route('/questionDetails_v1.html/<int:question_id>')
@@ -163,3 +162,26 @@ def search():
 @main.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
+
+
+# Route to handle profile submission
+@main.route('/submit_profile', methods=['POST'])
+def submit_profile():
+    username = request.form['username']
+    gender = request.form['gender']
+    occupation = request.form['occupation']
+    self_intro = request.form['selfIntro']
+    password = request.form['password']
+    security_question = request.form['securityQuestion']
+    security_answer = request.form['securityAnswer']
+        
+    # Print the received form data
+    print(f'Username: {username}')
+    print(f'Gender: {gender}')
+    print(f'Occupation: {occupation}')
+    print(f'Self Introduction: {self_intro}')
+    print(f'Password: {password}')
+    print(f'Security Question: {security_question}')
+    print(f'Security Answer: {security_answer}')
+        
+    return 'Profile submitted successfully!'

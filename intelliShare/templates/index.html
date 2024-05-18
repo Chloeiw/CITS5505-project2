@@ -15,14 +15,9 @@
   </div>
   
   <div class="menubar">
-    <div class="element" id="home"><img src="../static/home.png" alt="home"><a href="{{ url_for('main.home') }}">Home</a></div>
-    <div class="element" id="business"><img src="../static/business.png" alt="business"><a href="">Business</a></div>
-    <div class="element" id="sports"><img src="../static/sports.png" alt="sports"><a href="">Sports</a></div>
-  </div>
-
-  <div class="searchbar">
-    <div class="search"><img src="../static/search.png" alt=""><a href="{{ url_for('main.search') }}">Search</a></div>
-  </div>
+    <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('main.home') }}">Home</a></div>
+    <div class="element" id="search"><img src="{{ url_for('static', filename='search.png') }}" alt="search"><a href="{{ url_for('main.search') }}">Search</a></div>
+</div>
 
 <!-- Content -->
 
@@ -57,7 +52,7 @@
 
 <!--  profile -->
 <div class="profilemenu">
-    <button type="profile" class="button-profile" onclick="">Profile</button>
+    <button type="profile" class="button-profile" onclick=""><a href="/profile">Profile</a></button>
     <button type="addQuestion" class="button-addQuestion" onclick=""><a href="/addQuestion_v1">Add Question</a></button>
     <span class="userpic"><img src="../static/userpic.png" alt="userpic"></span>
     <span class="username">Andrianto Hadi</span>
