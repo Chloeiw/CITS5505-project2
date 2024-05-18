@@ -52,10 +52,24 @@ def get_posts_from_database(start, limit):
     return all_posts[start:start+limit]
 
 @main.route('/login', methods=['GET', 'POST'])
-
 def login():
-    #[TODO]
-    return "<h2>login</h2>"
+    if request.method == 'POST':
+        print("request post login")
+        r = request.get_json()
+        username = r['username']
+        password = r['password']
+        print(username, password)
+
+
+        user = User.query.filter_by(username=username).first()
+        print(user)
+        if user and user.password == password:
+            login_user(user)
+            # return redirect(url_for('profile'))
+            return {"status":200, "message":"success"}
+        return {"status":400, "message":"user & pwd not match"}
+    print("request login get")
+    return render_template('index.html')
 
 @main.route('/register', methods=['GET', 'POST'])
 def register():

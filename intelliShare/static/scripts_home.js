@@ -55,6 +55,7 @@ function showAlert(message) {
 function login() {
     const username = document.getElementById('usernameInput').value;
     const password = document.getElementById('passwordInput').value;
+
     if (username && password) {
         fetch('/login', {
             method: 'POST',
@@ -63,25 +64,37 @@ function login() {
             },
             body: JSON.stringify({ username: username, password: password })
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
+        })
         .then(data => {
-            if (data.message === "Login successful") {
-                showAlert(data.message);
-                document.getElementById('username').innerText = data.username;
+            console.log('Response data:', data);  
+            if (data.status === 200) {
+                const usernameElement = document.getElementById('username');
                 const authButton = document.getElementById('authButton');
-                authButton.innerText = 'Profile';
-                authButton.onclick = function() {
-                    window.location.href = "/profile";
-                };
+                if (usernameElement && authButton) {
+                    usernameElement.innerText = username;
+                    authButton.innerText = 'Profile';
+                    authButton.onclick = function() {
+                        window.location.href = "/profile";
+                    };
                 closeModal();
             } else {
                 showAlert(data.message);
             }
+        }})
+        .catch(error => {
+            console.error('Error:', error);  
+            showAlert('Wrong combinations! Try again.');
         });
     } else {
         showAlert('Input the Correct Username and Password!');
     }
 }
+
 
 function navigateToProfile() {
     window.location.href = "/profile";
