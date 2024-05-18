@@ -52,11 +52,26 @@
 
 <!--  profile -->
 <div class="profilemenu">
-    <button type="profile" class="button-profile" onclick=""><a href="/profile">Profile</a></button>
+    <button id="authButton" type="button" class="button-profile" onclick="toggleAuth()">Sign up / Login</button>
     <button type="addQuestion" class="button-addQuestion" onclick=""><a href="/addQuestion_v1">Add Question</a></button>
     <span class="userpic"><img src="../static/userpic.png" alt="userpic"></span>
-    <span class="username">Andrianto Hadi</span>
-    
+    <span id="username" class="username"></span>
+
+</div>
+
+<!-- Login Modal -->
+<div id="loginModal" class="login-modal">
+    <h2>Login</h2>
+    <input type="text" id="usernameInput" placeholder="Username"><br>
+    <input type="password" id="passwordInput" placeholder="Password"><br>
+    <button onclick="login()">Login</button>
+    <button onclick="navigateToProfile()">Sign Up</button>
+    <button onclick="closeModal()">Close</button>
+</div>
+
+<!-- Alert Modal -->
+<div id="alertModal" class="alert-modal">
+    <p id="alertMessage"></p>
 </div>
 </body>
 
