@@ -15,13 +15,13 @@
   </div>
   
   <div class="menubar">
-    <div class="element" id="home"><img src="../static/home.png" alt="home"><a href="/">Home</a></div>
+    <div class="element" id="home"><img src="../static/home.png" alt="home"><a href="{{ url_for('main.home') }}">Home</a></div>
     <div class="element" id="business"><img src="../static/business.png" alt="business"><a href="">Business</a></div>
     <div class="element" id="sports"><img src="../static/sports.png" alt="sports"><a href="">Sports</a></div>
   </div>
 
   <div class="searchbar">
-    <div class="search"><img src="../static/search.png" alt=""><a href="search.html">Search</a></div>
+    <div class="search"><img src="../static/search.png" alt=""><a href="{{ url_for('main.search') }}">Search</a></div>
   </div>
 
 <!-- Content -->
@@ -34,54 +34,31 @@
 
 <!-- post -->
 <div class="question-container">
+
+    {% for post in posts %}
     <div class="question">
-        <h2>What are the best Toyko's sushi?</h2>
+        <h2><a href="{{ url_for('main.question_details', question_id=post.question_id) }}">{{ post.question }}</a></h2>
         <hr>
         <span class="usericon"><img src="../static/usericon.png" alt=""></span>
-        <span class="usernameComment">Jenny Wilson</span>
-        <span class="lastreply">Posted at 05 May 2024 13:00</span>
-            <p>Pantabangan town was submerged in the 1970s to build a reservoir.
-            But it emerges from the water on extremely rare occasions, when the weather is dry and hot.
-            It comes as almost half the country is experiencing a drought, with temperatures reaching highs in several areas.
-            This is the longest the town has ever been above water since the dam was constructed, Marlon Paladin, an engineer with the state agency that operates the country's dams, told news agency.
-            </p>
+        <span class="usernameComment">{{ post.username }}</span>
+        <span class="lastreply">{{ post.timestamp }}</span>
+            <p>{{ post.content }}</p>
     </div>
 
-    <div class="question">
-        <h2>What is the smartest animal?</h2>
-        <hr>
-        <span class="usericon"><img src="../static/usericon.png" alt=""></span>
-        <span class="usernameComment">Jenny Wilson</span>
-        <span class="lastreply">Posted at 05 May 2024 13:00</span>
-            <p>Pantabangan town was submerged in the 1970s to build a reservoir.
-            But it emerges from the water on extremely rare occasions, when the weather is dry and hot.
-            It comes as almost half the country is experiencing a drought, with temperatures reaching highs in several areas.
-            This is the longest the town has ever been above water since the dam was constructed, Marlon Paladin, an engineer with the state agency that operates the country's dams, told news agency.
-            </p>
-    </div>
-    <div class="question">
-        <h2>What is the best strategy to invest in the stocks?</h2>
-        <hr>
-        <span class="usericon"><img src="../static/usericon.png" alt=""></span>
-        <span class="usernameComment">Jenny Wilson</span>
-        <span class="lastreply">Posted at 05 May 2024 13:00</span>
-            <p>Pantabangan town was submerged in the 1970s to build a reservoir.
-            But it emerges from the water on extremely rare occasions, when the weather is dry and hot.
-            It comes as almost half the country is experiencing a drought.</p>
-            </p>
-    </div>
+    {% endfor %}
     <!-- More button -->
     <div class="more-button-container">
-        <button class="more-button">More</button>
+        <button class="more-button" id="loadMore">More</button>
     </div>
 </div>
+      
 
 
 
 <!--  profile -->
 <div class="profilemenu">
     <button type="profile" class="button-profile" onclick="">Profile</button>
-    <button type="addQuestion" class="button-addQuestion" onclick=""><a href="/addQuestion_v1.html">Add Question</a></button>
+    <button type="addQuestion" class="button-addQuestion" onclick=""><a href="/addQuestion_v1">Add Question</a></button>
     <span class="userpic"><img src="../static/userpic.png" alt="userpic"></span>
     <span class="username">Andrianto Hadi</span>
     
