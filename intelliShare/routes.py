@@ -1,10 +1,10 @@
 from datetime import datetime
-from flask import jsonify, request, render_template, redirect, session, url_for, Blueprint, flash, send_from_directory
+from flask import abort, jsonify, request, render_template, redirect, session, url_for, Blueprint, flash, send_from_directory
 from flask_login import login_user, login_required, logout_user
 import os
 from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import Question, User
+from .models import Answer, Question, User
 
 main = Blueprint("main", __name__)
 
@@ -197,3 +197,15 @@ def get_more_posts():
     limit = request.args.get('limit', type=int)
     more_questions = get_posts_from_database(start, limit)  # Assuming this function now returns Question objects
     return jsonify([question.to_dict() for question in more_questions])
+
+@main.route('/questioninfo/<int:question_id>')
+def question_details_copy(question_id):
+    # Fetch the question from the database using question_id
+    question = Question.query.get(question_id)
+    if question is None:
+        abort(404)  # Not found
+    answers = Answer.query.filter_by(question_id=question_id).all()
+    print(answers)  # Print the answers to the console
+    return render_template('questioninfo.html', question=question, answers=answers)
+
+
