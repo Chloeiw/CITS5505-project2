@@ -44,7 +44,7 @@ def configure_routes(app, db):
         return jsonify({"message": "User created successfully"}), 201
 
     # Route for the main page where questions can be added
-    @app.route('/add')
+    @app.route('/addQuestion_v1.html')
     def addQuestion():
         return render_template('addQuestion_v1.html')
 
@@ -94,7 +94,7 @@ def configure_routes(app, db):
         question_id = int(request.form['question_id'])
         answer_text = request.form['answer']
         username = "Andrianto Hadi"  # This should be dynamically set based on the current user in a real app
-        submission_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
+        answer_time = datetime.now().strftime('%d %b %Y %H:%M:%S')
         answer = {
             'question_id': question_id,
             'text': answer_text,

@@ -11,8 +11,8 @@
         <span class="title">IntelliShare</span>
     </div> -->
     <div class="menubar">
-        <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="">Home</a></div>
-        <div class="element" id="search"><img src="{{ url_for('static', filename='search.png') }}" alt="search"><a href="">Search</a></div>
+        <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('home') }}">Home</a></div>
+        <div class="element" id="search"><img src="{{ url_for('static', filename='search.png') }}" alt="search"><a href="{{ url_for('search') }}">Search</a></div>
     </div>
 
     <!-- Content -->
