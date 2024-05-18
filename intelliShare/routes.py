@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import jsonify, request, render_template, redirect, session, url_for, Blueprint, flash
+from flask import jsonify, request, render_template, redirect, session, url_for, Blueprint, flash, send_from_directory
 from flask_login import login_user, login_required, logout_user
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -12,6 +12,7 @@ questions = []
 answers = []
 
 # Configure upload folder and allowed extensions
+PROJ='intelliShare'
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -76,7 +77,7 @@ def add_question():
             file = request.files['cover']
             if file and allowed_file(file.filename):
                 filename = file.filename
-                filepath = os.path.join(UPLOAD_FOLDER, filename)
+                filepath = os.path.join(PROJ, UPLOAD_FOLDER, filename)
                 file.save(filepath)
 
         question_id = len(questions) + 1
@@ -120,7 +121,7 @@ def answer():
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = file.filename
-            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            filepath = os.path.join(PROJ, UPLOAD_FOLDER, filename)
             file.save(filepath)
 
             answer['image'] = filename
@@ -157,3 +158,8 @@ def search():
     return render_template('search.html', results=results)
 
 
+
+    # Serve uploaded files
+@main.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
