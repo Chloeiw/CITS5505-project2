@@ -16,14 +16,8 @@
   
   <div class="menubar">
     <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('home') }}">Home</a></div>
-    <div class="element" id="business"><img src="{{ url_for('static', filename='business.png') }}" alt="business"><a href="">Business</a></div>
-    <div class="element" id="sports"><img src="{{ url_for('static', filename='sports.png') }}" alt="sports"><a href="">Sports</a></div>
-  </div>
-
-<!-- search bar -->
-  <div class="searchbar">
-    <div class="search"><img src="{{ url_for('static', filename='search.png') }}" alt=""><a href="{{ url_for('search') }}">Search</a></div>
-  </div>
+    <div class="element" id="search"><img src="{{ url_for('static', filename='search.png') }}" alt="search"><a href="{{ url_for('search') }}">Search</a></div>
+</div>
 
 <!-- Content -->
 <form id="profile" action="{{ url_for('submit_profile') }}" method="POST">
