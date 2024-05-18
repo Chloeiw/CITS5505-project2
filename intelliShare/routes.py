@@ -2,6 +2,7 @@ from datetime import datetime
 from flask import jsonify, request, render_template, redirect, session, url_for, Blueprint, flash, send_from_directory
 from flask_login import login_user, login_required, logout_user
 import os
+from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import Question, User
 
@@ -37,16 +38,21 @@ class Post:
         self.timestamp = timestamp
         self.content = content
 
+        def to_dict(self):
+            return {
+                'id': self.id,
+                'title': self.title,
+                'content': self.content,
+                # ... other fields ...
+            }
+
+# Function to get posts from the database
 def get_posts_from_database(start, limit):
-    all_posts = [
-        Post(1, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
-        Post(2, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
-        Post(3, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
-        Post(4, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...')
-    ]
+    all_posts = Question.query.order_by(desc(Question.post_time)).all()  # get all posts ordered by timestamp
     return all_posts[start:start+limit]
 
 @main.route('/login', methods=['GET', 'POST'])
+
 def login():
     #[TODO]
     return "<h2>login</h2>"
@@ -149,7 +155,7 @@ def search():
 
     if query:  # only search if a query is provided
         all_posts = get_posts_from_database(0, 100)  # get all posts
-        results = [post for post in all_posts if query in post.question]  # search in post question
+        results = [post for post in all_posts if query in post.title]  # search in post question
 
         if not results:
             flash('No results found!')
@@ -185,3 +191,38 @@ def submit_profile():
     print(f'Security Answer: {security_answer}')
         
     return 'Profile submitted successfully!'
+@main.route('/get_more_posts', methods=['GET'])
+def get_more_posts():
+    start = request.args.get('start', type=int)
+    limit = request.args.get('limit', type=int)
+    more_questions = get_posts_from_database(start, limit)  # Assuming this function now returns Question objects
+    return jsonify([question.to_dict() for question in more_questions])
+
+
+# Route to handle profile submission
+@main.route('/submit_profile', methods=['POST'])
+def submit_profile():
+    username = request.form['username']
+    gender = request.form['gender']
+    occupation = request.form['occupation']
+    self_intro = request.form['selfIntro']
+    password = request.form['password']
+    security_question = request.form['securityQuestion']
+    security_answer = request.form['securityAnswer']
+        
+    # Print the received form data
+    print(f'Username: {username}')
+    print(f'Gender: {gender}')
+    print(f'Occupation: {occupation}')
+    print(f'Self Introduction: {self_intro}')
+    print(f'Password: {password}')
+    print(f'Security Question: {security_question}')
+    print(f'Security Answer: {security_answer}')
+        
+    return 'Profile submitted successfully!'
+@main.route('/get_more_posts', methods=['GET'])
+def get_more_posts():
+    start = request.args.get('start', type=int)
+    limit = request.args.get('limit', type=int)
+    more_questions = get_posts_from_database(start, limit)  # Assuming this function now returns Question objects
+    return jsonify([question.to_dict() for question in more_questions])
