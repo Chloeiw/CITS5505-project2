@@ -19,9 +19,9 @@ class Question(db.Model):
     content = mapped_column(String, nullable=False)
     cover = mapped_column(String, nullable=False)
     post_time = mapped_column(String, nullable=False)
-    category_id = mapped_column(Integer, ForeignKey('category.id'), nullable=False)
+    # category_id = mapped_column(Integer, ForeignKey('category.id'), nullable=False)
     user_id = mapped_column(Integer, ForeignKey('users.id'), nullable=False)
-    user = relationship('User')
+    # user = relationship('User')
 
 class Answer(db.Model):
     __tablename__ = "answer"
@@ -33,16 +33,16 @@ class Answer(db.Model):
     user = relationship('User')
     question = relationship('Question')
 
-class Category(db.Model):
-    __tablename__ = "category"
-    id = mapped_column(Integer, primary_key=True, autoincrement=True)
-    name = mapped_column(String, nullable=False)
+# class Category(db.Model):
+#     __tablename__ = "category"
+#     id = mapped_column(Integer, primary_key=True, autoincrement=True)
+#     name = mapped_column(String, nullable=False)
 
-class UserInterest(db.Model):
-    __tablename__ = "userInterest"
-    id = mapped_column(Integer, primary_key=True, autoincrement=True)
-    user_id = mapped_column(Integer, ForeignKey('users.id'), nullable=False)
-    category_id = mapped_column(Integer, ForeignKey('category.id'), nullable=False)
-    user = relationship('User')
-    category = relationship('Category')
+# class UserInterest(db.Model):
+#     __tablename__ = "userInterest"
+#     id = mapped_column(Integer, primary_key=True, autoincrement=True)
+#     user_id = mapped_column(Integer, ForeignKey('users.id'), nullable=False)
+#     # category_id = mapped_column(Integer, ForeignKey('category.id'), nullable=False)
+#     user = relationship('User')
+    # category = relationship('Category')
 
