@@ -37,6 +37,14 @@ class Post:
         self.timestamp = timestamp
         self.content = content
 
+        def to_dict(self):
+            return {
+                'id': self.id,
+                'title': self.title,
+                'content': self.content,
+                # ... other fields ...
+            }
+
 def get_posts_from_database(start, limit):
     all_posts = [
         Post(1, 'What is the smartest animal?', 'John', datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'), 'Pantabangan town was submerged in the 1970s to build a reservoir...'),
@@ -163,3 +171,12 @@ def search():
 @main.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
+
+@main.route('/get_more_posts', methods=['GET'])
+def get_more_posts():
+    start = int(request.args.get('start', 0))
+    limit = int(request.args.get('limit', 3))
+    
+    more_questions = Question.query.offset(start).limit(limit).all()
+    
+    return jsonify([question.to_dict() for question in more_questions])

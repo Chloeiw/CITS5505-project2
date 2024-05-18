@@ -3,31 +3,35 @@ const limit = 3; // Number of posts to fetch each time
 
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("loadMore").addEventListener("click", function() {
-        fetch(`/get_posts?start=${start}&limit=${limit}`)
+        fetch(`/get_more_posts?start=${start}&limit=${limit}`)
             .then(response => response.json())
             .then(data => {
+                console.log('Fetched data:', data); // Log the data to check the response
+
                 if (data.length > 0) {
-                    start += limit;
                     data.forEach(function(post) {
+                        console.log('Appending post:', post); // Log each post before appending
                         document.querySelector(".question-container").insertAdjacentHTML('beforeend', `
                             <div class="question">
-                                <h2><a href="/question/${post.question_id}">${post.question}</a></h2>
+                                <h2><a href="/question/${post.id}">${post.title}</a></h2>
                                 <hr>
                                 <span class="usericon"><img src="../static/usericon.png" alt=""></span>
-                                <span class="usernameComment">${post.username}</span>
-                                <span class="lastreply">${post.timestamp}</span>
+                                <span class="usernameComment">${post.user_id}</span>
+                                <span class="lastreply">${post.post_time}</span>
                                 <p>${post.content}</p>
                             </div>
                         `);
                     });
+                    start += data.length; // Increment start by the actual number of posts fetched
                 } else {
                     document.getElementById("loadMore").style.display = "none";
                 }
+            })
+            .catch(error => {
+                console.error('Error fetching posts:', error);
             });
     });
 });
-
-
 
 
 function toggleAuth() {

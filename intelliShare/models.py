@@ -23,6 +23,19 @@ class Question(db.Model):
     user_id = mapped_column(Integer, ForeignKey('users.id'), nullable=False)
     user = relationship('User')
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'subtitle': self.subtitle,
+            'content': self.content,
+            'cover': self.cover,
+            'post_time': self.post_time,
+            'category_id': self.category_id,
+            'user_id': self.user_id,
+            # 'user': self.user.to_dict() 
+        }
+
 class Answer(db.Model):
     __tablename__ = "answer"
     id = mapped_column(Integer, primary_key=True, autoincrement=True)
