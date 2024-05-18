@@ -1,4 +1,4 @@
-let start = 3; // Start after the initial posts
+let start = 2; // Start after the initial posts
 const limit = 3; // Number of posts to fetch each time
 
 document.addEventListener("DOMContentLoaded", function() {
