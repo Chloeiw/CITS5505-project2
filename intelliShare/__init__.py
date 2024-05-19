@@ -9,8 +9,6 @@ from .routes import main
 
 login_manager = LoginManager()
 
-
-
 def create_app(database_uri="sqlite:///IntelliShare.db"):
     app = Flask(__name__, static_url_path='/static')
     app.config["SQLALCHEMY_DATABASE_URI"] = database_uri
