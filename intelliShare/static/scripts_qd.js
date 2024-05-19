@@ -141,7 +141,7 @@ function closeModal() {
 }
 
 document.getElementById('write').addEventListener('input', function() {
-    var maxLength = 10; // Set the maximum character limit
+    var maxLength = 1000; // Set the maximum character limit
     
     if (this.value.length > maxLength) {
         // Limit input to maxLength characters
