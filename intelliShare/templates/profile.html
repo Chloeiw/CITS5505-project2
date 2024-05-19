@@ -20,7 +20,7 @@
   </div>
 
 <!-- Content -->
-<form id="profile" action="{{ url_for('main.submit_profile') }}" method="POST">
+<form id="profile" action="{{ url_for('main.submit_profile') }}" method="POST" enctype="multipart/form-data">
     <div class="userpic-container">
         <span class="userpic"><img src="{{ url_for('static', filename='userpic.png') }}" alt="userpic"></span>
     </div>

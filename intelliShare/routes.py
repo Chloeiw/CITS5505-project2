@@ -207,27 +207,33 @@ def uploaded_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
 
 
-# Route to handle profile submission
 @main.route('/submit_profile', methods=['POST'])
 def submit_profile():
     username = request.form['username']
-    gender = request.form['gender']
-    occupation = request.form['occupation']
-    self_intro = request.form['selfIntro']
     password = request.form['password']
-    security_question = request.form['securityQuestion']
-    security_answer = request.form['securityAnswer']
-        
-    # Print the received form data
-    print(f'Username: {username}')
-    print(f'Gender: {gender}')
-    print(f'Occupation: {occupation}')
-    print(f'Self Introduction: {self_intro}')
-    print(f'Password: {password}')
-    print(f'Security Question: {security_question}')
-    print(f'Security Answer: {security_answer}')
-        
+    
+    image = None
+    if 'image' in request.files:
+        file = request.files['image']
+        if file and allowed_file(file.filename):
+            filename = filename(file.filename)
+            file.save(os.path.join(main.config['UPLOAD_FOLDER'], filename))
+            image = filename
+    else:
+        image = 'default_image.jpg'  # give a default image
+
+    new_user = User(
+        username=username,
+        password=password,
+        image=image
+    )
+    
+    db.session.add(new_user)
+    db.session.commit()
+    
     return 'Profile submitted successfully!'
+
+
 @main.route('/get_more_posts', methods=['GET'])
 def get_more_posts():
     start = request.args.get('start', type=int)
