@@ -2,6 +2,7 @@ from datetime import datetime
 from flask import abort, jsonify, request, render_template, redirect, session, url_for, Blueprint, flash, send_from_directory
 from flask_login import login_user, login_required, logout_user
 import os
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import Question, User, Answer
@@ -241,7 +242,15 @@ def question_details_copy(question_id):
     question = Question.query.get(question_id)
     if question is None:
         abort(404)  # Not found
-    answers = Answer.query.filter_by(question_id=question_id).all()
+    answers = db.session.query(
+        Answer.id,
+        Answer.comment,
+        Answer.answer_time,
+        Answer.user_id,
+        Answer.question_id
+    ).filter(
+        Answer.question_id == question_id
+    ).all()
     print(answers)  # Print the answers to the console
     return render_template('questioninfo.html', question=question, answers=answers)
 
