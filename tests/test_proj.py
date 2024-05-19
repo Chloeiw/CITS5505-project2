@@ -10,32 +10,30 @@ def test_home(client):
 
 def test_registration(client, app):
     data = {"username": "test@test.com", "password": "testpassword"}
-    response = client.post("/submit_profile", 
-                           data=json.dumps(data),
-                           headers={"Content-Type": "application/json"})
-    print(response.json)
+    response = client.post("/submit_profile",  data=data)
+    assert response.status_code == 200
     with app.app_context():
         assert User.query.count() == 1
         assert User.query.first().username == "test@test.com"
 
 
 
-# def test_question(client, app):
-#     response = client.post("/question", data={"email": "test@test.com", "password": "testpassword"})
+def test_question(client, app):
+    response = client.post("/addQuestion_v1", data={"email": "test@test.com", "password": "testpassword"})
 
-#     with app.app_context():
-#         assert User.query.count() == 1
-#         assert User.query.first().email == "test@test.com"
-#     pass
+    with app.app_context():
+        assert User.query.count() == 1
+        assert User.query.first().email == "test@test.com"
+    pass
 
 
-# def test_answer(client, app):
-#     response = client.post("/answer", data={"email": "test@test.com", "password": "testpassword"})
+def test_answer(client, app):
+    response = client.post("/answer", data={"email": "test@test.com", "password": "testpassword"})
 
-#     with app.app_context():
-#         assert User.query.count() == 1
-#         assert User.query.first().email == "test@test.com"
-#     pass
+    with app.app_context():
+        assert User.query.count() == 1
+        assert User.query.first().email == "test@test.com"
+    pass
 
 
 # def test_search(client, app):

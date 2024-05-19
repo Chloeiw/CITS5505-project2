@@ -139,3 +139,15 @@ function closeModal() {
         loginModal.style.display = 'none';
     }
 }
+
+document.getElementById('write').addEventListener('input', function() {
+    var maxLength = 10; // Set the maximum character limit
+    
+    if (this.value.length > maxLength) {
+        // Limit input to maxLength characters
+        this.value = this.value.slice(0, maxLength);
+        
+        // Display an alert if character limit is exceeded
+        alert("Character limit exceeded! Maximum " + maxLength + " characters allowed.");
+    }
+});
