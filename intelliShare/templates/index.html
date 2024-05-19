@@ -10,9 +10,11 @@
 <body>
 
    <!--  menu bar -->
-  <div class="title">
-      IntelliShare
-  </div>
+   <div id="container">
+    <span class="title">
+        IntelliShare
+    </span>
+</div>
   
   <div class="menubar">
     <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('main.home') }}">Home</a></div>
@@ -25,7 +27,7 @@
 <div class="content">
     <div class="contentpic"><img src="../static/contentpic.png" alt="contentpic"></div>
     <span id="articletitle">Philippines: Drought dries up dam to reveal centuries-old town</span>
-
+</div>
 
 <!-- post -->
 <div class="question-container">
@@ -46,14 +48,12 @@
         <button class="more-button" id="loadMore" >More</button>
     </div>
 </div>
-      
-
-
 
 <!--  profile -->
 <div class="profilemenu">
     <button id="authButton" type="button" class="button-profile" onclick="toggleAuth()">Sign up / Login</button>
-    <button type="addQuestion" class="button-addQuestion" onclick=""><a href="/addQuestion_v1">Add Question</a></button>
+    <button id="logoutButton" type="button" class="button-logout" onclick="logout()">Logout</button>
+    <button id="addQuestion" type="button" class="button-addQuestion" onclick="location.href='{{ url_for('main.add_question') }}'">Add Question</button>
     <span class="userpic"><img src="../static/userpic.png" alt="userpic"></span>
     <span id="username" class="username"></span>
 
@@ -67,16 +67,19 @@
     <button onclick="login()">Login</button>
     <button onclick="navigateToProfile()">Sign Up</button>
     <button onclick="closeModal()">Close</button>
+
 </div>
 
 <!-- Alert Modal -->
 <div id="alertModal" class="alert-modal">
     <p id="alertMessage"></p>
 </div>
-</body>
+
 
 
 <script src="{{ url_for('static', filename='scripts_home.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+</body>

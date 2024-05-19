@@ -2,9 +2,10 @@ from datetime import datetime
 from flask import abort, jsonify, request, render_template, redirect, session, url_for, Blueprint, flash, send_from_directory
 from flask_login import login_user, login_required, logout_user
 import os
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import Question, User,Answer
+from .models import Question, User, Answer
 from .db import db
 
 main = Blueprint("main", __name__)
@@ -44,7 +45,6 @@ class Post:
                 'id': self.id,
                 'title': self.title,
                 'content': self.content,
-                # ... other fields ...
             }
 
 # Function to get posts from the database
@@ -52,36 +52,28 @@ def get_posts_from_database(start, limit):
     all_posts = Question.query.order_by(desc(Question.post_time)).all()  # get all posts ordered by timestamp
     return all_posts[start:start+limit]
 
+
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        print("request post login")
         r = request.get_json()
         username = r['username']
         password = r['password']
-        print(username, password)
-
 
         user = User.query.filter_by(username=username).first()
-        print(user)
         if user and user.password == password:
             login_user(user)
-            # return redirect(url_for('profile'))
-            return {"status":200, "message":"success"}
-        return {"status":400, "message":"user & pwd not match"}
-    print("request login get")
+            session['username'] = user.username  # Set the session
+            return {"status": 200, "message": "success", "username": user.username}
+        return {"status": 400, "message": "Wrong Combination, Try again!"}
     return render_template('index.html')
 
-@main.route('/register', methods=['GET', 'POST'])
-def register():
-    #[TODO]
-    return "<h2>Register</h2>"
+@main.route('/check_login')
+def check_login():
+    if 'username' in session:
+        return jsonify({'status': 200, 'username': session['username']})
+    return jsonify({'status': 401})
 
-@main.route('/logout', methods=['GET', 'POST'])
-@login_required
-def logout():
-    session.pop('username', None)
-    return redirect(url_for("main.home"))
 
 # create new question
 @main.route('/addQuestion_v1', methods=['GET', 'POST'])
@@ -209,8 +201,6 @@ def search():
 
     return render_template('search.html', results=results)
 
-
-
     # Serve uploaded files
 @main.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -219,24 +209,41 @@ def uploaded_file(filename):
 # Route to handle profile submission
 @main.route('/submit_profile', methods=['POST'])
 def submit_profile():
-    username = request.form['username']
-    gender = request.form['gender']
-    occupation = request.form['occupation']
-    self_intro = request.form['selfIntro']
-    password = request.form['password']
-    security_question = request.form['securityQuestion']
-    security_answer = request.form['securityAnswer']
-        
-    # Print the received form data
-    print(f'Username: {username}')
-    print(f'Gender: {gender}')
-    print(f'Occupation: {occupation}')
-    print(f'Self Introduction: {self_intro}')
-    print(f'Password: {password}')
-    print(f'Security Question: {security_question}')
-    print(f'Security Answer: {security_answer}')
-        
-    return 'Profile submitted successfully!'
+    try:
+        username = request.form['username']
+        password = request.form['password']
+
+        if not username or not password:
+            return jsonify({'message': 'Username and password are required!'}), 400
+
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            return jsonify({'message': 'Username already exists!'}), 400
+
+        image = None
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                image = filename
+        else:
+            image = 'default_image.jpg' 
+
+        new_user = User(
+            username=username,
+            password=password,
+            image=image
+        )
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        return jsonify({'message': 'Profile submitted successfully!'})
+    except Exception as e:
+        return jsonify({'message': 'An error occurred', 'error': str(e)}), 500
+
+
 @main.route('/get_more_posts', methods=['GET'])
 def get_more_posts():
     start = request.args.get('start', type=int)
@@ -250,8 +257,19 @@ def question_details_copy(question_id):
     question = Question.query.get(question_id)
     if question is None:
         abort(404)  # Not found
-    answers = Answer.query.filter_by(question_id=question_id).all()
+    answers = db.session.query(
+        Answer.id,
+        Answer.comment,
+        Answer.answer_time,
+        Answer.user_id,
+        Answer.question_id
+    ).filter(
+        Answer.question_id == question_id
+    ).all()
     print(answers)  # Print the answers to the console
     return render_template('questioninfo.html', question=question, answers=answers)
 
-
+@main.route('/logout')
+def logout():
+    session.pop('username', None)
+    return render_template('index.html')

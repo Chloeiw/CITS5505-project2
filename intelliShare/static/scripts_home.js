@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
 function toggleAuth() {
     document.getElementById('loginModal').style.display = 'block';
 }
@@ -66,7 +65,9 @@ function login() {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error("HTTP error " + response.status);
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message || "HTTP error " + response.status);
+                });
             }
             return response.json();
         })
@@ -74,18 +75,15 @@ function login() {
             console.log('Response data:', data);  
             if (data.status === 200) {
                 const usernameElement = document.getElementById('username');
-                const authButton = document.getElementById('authButton');
-                if (usernameElement && authButton) {
+                if (usernameElement) {
                     usernameElement.innerText = username;
-                    authButton.innerText = 'Profile';
-                    authButton.onclick = function() {
-                        window.location.href = "/profile";
-                    };
-                closeModal();
+                    document.getElementById('authButton').style.display = 'none'; // 登录成功后隐藏按钮
+                    closeModal();
+                }
             } else {
                 showAlert(data.message);
             }
-        }})
+        })
         .catch(error => {
             console.error('Error:', error);  
             showAlert('Wrong combinations! Try again.');
@@ -95,7 +93,83 @@ function login() {
     }
 }
 
-
 function navigateToProfile() {
     window.location.href = "/profile";
+}
+
+function closeModal() {
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.style.display = 'none';
+    }
+}
+
+function showAlert(message) {
+    const alertModal = document.getElementById('alertModal');
+    const alertMessage = document.getElementById('alertMessage');
+    if (alertModal && alertMessage) {
+        alertMessage.innerText = message;
+        alertModal.style.display = 'block';
+        setTimeout(() => {
+            alertModal.style.display = 'none';
+        }, 3000);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    checkLoginStatus();
+});
+
+function checkLoginStatus() {
+    fetch('/check_login')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 200) {
+                const usernameElement = document.getElementById('username');
+                if (usernameElement) {
+                    usernameElement.innerText = data.username;
+                    document.getElementById('authButton').style.display = 'none'; // 如果已经登录，则隐藏按钮
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function logout() {
+    fetch('/logout', {
+        method: 'GET'
+    })
+    .then(response => {
+        if (response.ok) {
+            const usernameElement = document.getElementById('username');
+            const authButton = document.getElementById('authButton');
+            if (usernameElement && authButton) {
+                usernameElement.innerText = '';
+                authButton.innerText = 'Sign up / Login';
+                authButton.style.display = 'block'; // 登出后显示按钮
+                authButton.onclick = function() {
+                    showModal();
+                };
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function showModal() {
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.style.display = 'block';
+    }
+}
+
+function closeModal() {
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.style.display = 'none';
+    }
 }

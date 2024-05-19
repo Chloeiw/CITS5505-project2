@@ -38,4 +38,3 @@ def create_app(database_uri="sqlite:///IntelliShare.db"):
 
     app.register_blueprint(main)
     return app
-
