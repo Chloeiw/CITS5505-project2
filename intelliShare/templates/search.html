@@ -10,9 +10,11 @@
 <body>
 
    <!--  menu bar -->
-  <div class="title">
-      IntelliShare
-  </div>
+   <div id="container">
+    <span class="title">
+        IntelliShare
+    </span>
+</div>
   
   <div class="menubar">
     <div class="element" id="home"><img src="{{ url_for('static', filename='home.png') }}" alt="home"><a href="{{ url_for('main.home') }}">Home</a></div>
@@ -38,10 +40,10 @@
   {% endif %}
 
   {% endwith %}
-    {% for result in results %}
-      <h2>{{ result.title }}</h2>
-      <p>{{ result.content }}</p>
-  {% endfor %}
+  {% for result in results %}
+  <h2><a href="{{ url_for('main.question_details_copy', question_id=result.id) }}">{{ result.title }}</a></h2>
+  <p>{{ result.content }}</p>
+{% endfor %}
 </div>
 
 <!--  profile -->
