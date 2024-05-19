@@ -209,29 +209,39 @@ def uploaded_file(filename):
 
 @main.route('/submit_profile', methods=['POST'])
 def submit_profile():
-    username = request.form['username']
-    password = request.form['password']
-    
-    image = None
-    if 'image' in request.files:
-        file = request.files['image']
-        if file and allowed_file(file.filename):
-            filename = filename(file.filename)
-            file.save(os.path.join(main.config['UPLOAD_FOLDER'], filename))
-            image = filename
-    else:
-        image = 'default_image.jpg'  # give a default image
+    try:
+        username = request.form['username']
+        password = request.form['password']
 
-    new_user = User(
-        username=username,
-        password=password,
-        image=image
-    )
-    
-    db.session.add(new_user)
-    db.session.commit()
-    
-    return 'Profile submitted successfully!'
+        if not username or not password:
+            return jsonify({'message': 'Username and password are required!'}), 400
+
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            return jsonify({'message': 'Username already exists!'}), 400
+
+        image = None
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                image = filename
+        else:
+            image = 'default_image.jpg' 
+
+        new_user = User(
+            username=username,
+            password=password,
+            image=image
+        )
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        return jsonify({'message': 'Profile submitted successfully!'})
+    except Exception as e:
+        return jsonify({'message': 'An error occurred', 'error': str(e)}), 500
 
 
 @main.route('/get_more_posts', methods=['GET'])
