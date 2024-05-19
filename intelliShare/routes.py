@@ -61,14 +61,12 @@ def login():
         password = r['password']
         print(username, password)
 
-
         user = User.query.filter_by(username=username).first()
         print(user)
         if user and user.password == password:
             login_user(user)
-            # return redirect(url_for('profile'))
             return {"status":200, "message":"success"}
-        return {"status":400, "message":"user & pwd not match"}
+        return {"status":400, "message":"Wrong Combination, Try again!"}
     print("request login get")
     return render_template('index.html')
 
@@ -256,3 +254,8 @@ def question_details_copy(question_id):
     return render_template('questioninfo.html', question=question, answers=answers)
 
 
+@main.route('/check_login')
+def check_login():
+    if 'username' in session:
+        return jsonify({'status': 200, 'username': session['username']})
+    return jsonify({'status': 401})

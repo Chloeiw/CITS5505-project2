@@ -66,7 +66,9 @@ function login() {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error("HTTP error " + response.status);
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message || "HTTP error " + response.status);
+                });
             }
             return response.json();
         })
@@ -81,11 +83,12 @@ function login() {
                     authButton.onclick = function() {
                         window.location.href = "/profile";
                     };
-                closeModal();
+                    closeModal();
+                }
             } else {
                 showAlert(data.message);
             }
-        }})
+        })
         .catch(error => {
             console.error('Error:', error);  
             showAlert('Wrong combinations! Try again.');
@@ -95,7 +98,28 @@ function login() {
     }
 }
 
+function closeModal() {
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.style.display = 'none';
+    }
+}
+
+function showAlert(message) {
+    const alertModal = document.getElementById('alertModal');
+    const alertMessage = document.getElementById('alertMessage');
+    if (alertModal && alertMessage) {
+        alertMessage.innerText = message;
+        alertModal.style.display = 'block';
+        setTimeout(() => {
+            alertModal.style.display = 'none';
+        }, 3000);
+    }
+}
+
+
 
 function navigateToProfile() {
     window.location.href = "/profile";
 }
+

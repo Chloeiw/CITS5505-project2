@@ -149,17 +149,6 @@ position: absolute;
     color: #8F8D90;
 }
 
-#{
-    position: absolute;
-    width: 600px;
-    height: 200px;
-    top: 500px;
-    left: 660px;
-    font-size: 20px;
-    font-weight: 400;
-    font-family: Roboto;
-    color: #000000;
-}
 #articletitle{
     position: absolute;
     width: 599px;
