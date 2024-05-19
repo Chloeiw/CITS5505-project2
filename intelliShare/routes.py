@@ -44,7 +44,6 @@ class Post:
                 'id': self.id,
                 'title': self.title,
                 'content': self.content,
-                # ... other fields ...
             }
 
 # Function to get posts from the database
