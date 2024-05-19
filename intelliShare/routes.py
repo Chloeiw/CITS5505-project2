@@ -212,7 +212,7 @@ def submit_profile():
     try:
         username = request.form['username']
         password = request.form['password']
-
+        print(username, password)
         if not username or not password:
             return jsonify({'message': 'Username and password are required!'}), 400
 

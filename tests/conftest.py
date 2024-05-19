@@ -4,7 +4,7 @@ from intelliShare import create_app, db
 
 @pytest.fixture()
 def app():
-    app = create_app("sqlite://")
+    app = create_app("sqlite:///test.db")
 
     with app.app_context():
         db.create_all()
