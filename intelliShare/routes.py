@@ -224,8 +224,8 @@ def submit_profile():
         if 'image' in request.files:
             file = request.files['image']
             if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                filename = file.filename
+                file.save(os.path.join(UPLOAD_FOLDER, filename))
                 image = filename
         else:
             image = 'default_image.jpg' 
