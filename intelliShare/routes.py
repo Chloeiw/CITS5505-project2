@@ -4,7 +4,7 @@ from flask_login import login_user, login_required, logout_user
 import os
 from sqlalchemy import desc
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import Question, User,Answer
+from .models import Question, User, Answer
 from .db import db
 
 main = Blueprint("main", __name__)
@@ -52,34 +52,28 @@ def get_posts_from_database(start, limit):
     all_posts = Question.query.order_by(desc(Question.post_time)).all()  # get all posts ordered by timestamp
     return all_posts[start:start+limit]
 
+
 @main.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        print("request post login")
         r = request.get_json()
         username = r['username']
         password = r['password']
-        print(username, password)
 
         user = User.query.filter_by(username=username).first()
-        print(user)
         if user and user.password == password:
             login_user(user)
-            return {"status":200, "message":"success"}
-        return {"status":400, "message":"Wrong Combination, Try again!"}
-    print("request login get")
+            session['username'] = user.username  # Set the session
+            return {"status": 200, "message": "success", "username": user.username}
+        return {"status": 400, "message": "Wrong Combination, Try again!"}
     return render_template('index.html')
 
-@main.route('/register', methods=['GET', 'POST'])
-def register():
-    #[TODO]
-    return "<h2>Register</h2>"
+@main.route('/check_login')
+def check_login():
+    if 'username' in session:
+        return jsonify({'status': 200, 'username': session['username']})
+    return jsonify({'status': 401})
 
-@main.route('/logout', methods=['GET', 'POST'])
-@login_required
-def logout():
-    session.pop('username', None)
-    return redirect(url_for("main.home"))
 
 # create new question
 @main.route('/addQuestion_v1', methods=['GET', 'POST'])
@@ -254,8 +248,7 @@ def question_details_copy(question_id):
     return render_template('questioninfo.html', question=question, answers=answers)
 
 
-@main.route('/check_login')
-def check_login():
-    if 'username' in session:
-        return jsonify({'status': 200, 'username': session['username']})
-    return jsonify({'status': 401})
+@main.route('/logout')
+def logout():
+    session.pop('username', None)
+    return render_template('index.html')

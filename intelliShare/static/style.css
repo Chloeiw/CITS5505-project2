@@ -80,6 +80,20 @@ position: absolute;
     font-family: Roboto;
 }
 
+.profilemenu .button-logout{
+    border-radius: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    position: absolute;
+    top: 250px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Roboto;
+}
+
 .profilemenu .button-addQuestion{
     border-radius: 100px;
     background-color: #FFFFFF;
@@ -101,7 +115,7 @@ position: absolute;
     justify-content: center;
     position: absolute;
     width: 280px;
-    height: 248px;
+    height: 300px;
     top: 99px;
     left: 1300px; 
     border-radius: 6px;

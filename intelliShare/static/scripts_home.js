@@ -98,6 +98,11 @@ function login() {
     }
 }
 
+function navigateToProfile() {
+    window.location.href = "/profile";
+}
+
+
 function closeModal() {
     const loginModal = document.getElementById('loginModal');
     if (loginModal) {
@@ -118,8 +123,64 @@ function showAlert(message) {
 }
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    checkLoginStatus();
+});
 
-function navigateToProfile() {
-    window.location.href = "/profile";
+function checkLoginStatus() {
+    fetch('/check_login')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 200) {
+                const usernameElement = document.getElementById('username');
+                const authButton = document.getElementById('authButton');
+                if (usernameElement && authButton) {
+                    usernameElement.innerText = data.username;
+                    authButton.innerText = 'Profile';
+                    authButton.onclick = function() {
+                        window.location.href = "/profile";
+                    };
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
+function logout() {
+    fetch('/logout', {
+        method: 'GET'
+    })
+    .then(response => {
+        if (response.ok) {
+            const usernameElement = document.getElementById('username');
+            const authButton = document.getElementById('authButton');
+            if (usernameElement && authButton) {
+                usernameElement.innerText = '';
+                authButton.innerText = 'Sign up / Login';
+                authButton.onclick = function() {
+                    showModal();
+                };
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+function showModal() {
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.style.display = 'block';
+    }
+}
+
+function closeModal() {
+    const loginModal = document.getElementById('loginModal');
+    if (loginModal) {
+        loginModal.style.display = 'none';
+    }
+}
