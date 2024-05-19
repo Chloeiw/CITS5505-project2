@@ -21,13 +21,20 @@
         <img src="{{ url_for('main.uploaded_file', filename=question.cover) }}" alt="Content Picture">
     </div>
     <span class="usericon"><img src="{{ url_for('static', filename='usericon.png') }}" alt=""></span>
-    <span class="usernameComment">{{ question.user_id }}</span> <!-- Replace with user's username if available -->
+    <span class="usernameComment">{{ question.user_id }}</span> 
     <span class="lastreply">Posted at {{ question.post_time }}</span>
     
     <span id="title">{{ question.title }}</span> 
-    <span id="summary">{{ question.content }}</span> <!-- Replace with appropriate attribute for question summary -->
+    <span id="summary">{{ question.content }}</span> 
     <div class="answer1">
-
+        <div class="answer1">
+            <form action="/questionDetails_v1.html" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="question_id" value="{{ question.id }}">
+                <input type="text" id="write" name="answer" placeholder="Write my answer">
+                <input type="file" name="file" accept="image/*">
+                <button type="submit" id="button-send">Send</button>
+            </form>
+        </div>
     </div>
 </div>
 
