@@ -46,15 +46,12 @@
         <button class="more-button" id="loadMore" >More</button>
     </div>
 </div>
-      
-
-
 
 <!--  profile -->
 <div class="profilemenu">
     <button id="authButton" type="button" class="button-profile" onclick="toggleAuth()">Sign up / Login</button>
     <button id="logoutButton" type="button" class="button-logout" onclick="logout()">Logout</button>
-    <button type="addQuestion" class="button-addQuestion" onclick=""><a href="/addQuestion_v1">Add Question</a></button>
+    <button id="addQuestion" type="button" class="button-addQuestion"><a href="{{ url_for('main.add_question') }}">Add Question</a></button>
     <span class="userpic"><img src="../static/userpic.png" alt="userpic"></span>
     <span id="username" class="username"></span>
 

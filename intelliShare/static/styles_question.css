@@ -77,6 +77,14 @@
     margin-bottom: 20px; /* Add some space between each form group */
 }
 
+.form-group textarea {
+    background-color: #f8f8f8;
+    border-radius: 6px;
+    width: 600px;
+    height: 100px;
+    resize: none;
+}
+
 .form-group label{
     color: #8F8D90;
     width: 37px;

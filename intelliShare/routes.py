@@ -201,8 +201,6 @@ def search():
 
     return render_template('search.html', results=results)
 
-
-
     # Serve uploaded files
 @main.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -246,7 +244,6 @@ def question_details_copy(question_id):
     answers = Answer.query.filter_by(question_id=question_id).all()
     print(answers)  # Print the answers to the console
     return render_template('questioninfo.html', question=question, answers=answers)
-
 
 @main.route('/logout')
 def logout():
