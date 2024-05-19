@@ -131,9 +131,9 @@ def add_question():
     
     return render_template('addQuestion_v1.html')
 
-@main.route('/addQuestion_v1.html')
-def add():
-    return render_template('addQuestion_v1.html')
+#@main.route('/addQuestion_v1.html')
+#def add():
+#    return render_template('addQuestion_v1.html')
 
 @main.route('/questionDetails_v1.html')
 def details():
@@ -215,7 +215,6 @@ def search():
 @main.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
-
 
 # Route to handle profile submission
 @main.route('/submit_profile', methods=['POST'])
