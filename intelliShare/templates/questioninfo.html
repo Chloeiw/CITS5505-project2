@@ -52,8 +52,8 @@
 </div>
 
     <div class="profilemenu">
-        <button type="profile" class="button-profile" onclick=""><a href="/profile" style="text-decoration: none;">Profile</a></button>
-        <button type="addQuestion" class="button-addQuestion" onclick=""><a href="/addQuestion_v1.html" style="text-decoration: none;" >Add Question</a></button>
+        <button type="button" class="button-profile" onclick="location.href='/profile'">Profile</button>
+        <button id="addQuestion" type="button" class="button-addQuestion" onclick="location.href='{{ url_for('main.add_question') }}'">Add Question</button>
         <span class="userpic"><img src="{{ url_for('static', filename='userpic.png') }}" alt="userpic"></span>
         <span class="username">Andrianto Hadi</span>
     </div>
