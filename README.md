@@ -31,6 +31,10 @@ The first version of the App has five feature modules, which are as follows:
 5. **The information feed**
    The feed feature allows users to browse recommended questions and their answers. The Recommended contents are presented based on a simple ranking algorithm: prioritize matching user interest with problem classification, then recommend according to the latest time in the database.
 
+wireframe drawing： https://www.figma.com/design/037QbF52714lWJ2t7Aw0OL/IntelliShare?node-id=0-1&t=SJKTDwLkZQLGTXQA-1
+UI design: https://app.zeplin.io/project/662fb9c824b5ce0de500f801
+
+
 ### Models
 
 **Table: users**
