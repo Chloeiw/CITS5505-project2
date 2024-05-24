@@ -22,9 +22,6 @@ def create_app(database_uri="sqlite:///IntelliShare.db"):
         os.makedirs(UPLOAD_FOLDER)
 
     db.init_app(app)
-
-    with app.app_context():
-        db.create_all()
         
     login_manager.init_app(app)
     with app.app_context():
